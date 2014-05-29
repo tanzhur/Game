@@ -46,12 +46,23 @@
         }
         public static void Main(string[] args)
         {
-            Piece pawnA = new Piece(0, 0);
-            Piece pawnB = new Piece(0, 2);
-            Piece pawnC = new Piece(0, 4);
-            Piece pawnD = new Piece(0, 6);
+            const int PawnAStartRow = 0;
+            const int PawnAStartColumn = 0;
+            const int PawnBStartRow = 0;
+            const int PawnBStartColumn = 2;
+            const int PawnCStartRow = 0;
+            const int PawnCStartColumn = 4;
+            const int PawnDStartRow = 0;
+            const int PawnDStartColumn = 6;
+            const int KingStartRow = 7;
+            const int KingStartColumn = 3;
+            
+            Piece pawnA = new Piece(PawnAStartRow, PawnAStartColumn);
+            Piece pawnB = new Piece(PawnBStartRow, PawnBStartColumn);
+            Piece pawnC = new Piece(PawnCStartRow, PawnCStartColumn);
+            Piece pawnD = new Piece(PawnDStartRow, PawnDStartColumn);
 
-            Piece king = new Piece(7, 3);
+            Piece king = new Piece(KingStartRow, KingStartColumn);
             bool isGameOver = false;
 
             // Пази последователноста на хода
@@ -169,7 +180,7 @@
             }
         }
 
-        private static bool HasPawnPosibleMoves(Piece pawn, Piece obstacle1, Piece obstacle2, Piece obstacle3, Piece obstacle4)
+        private static bool HasPawnPosibleMoves(Piece pawn, Piece piece1, Piece piece2, Piece piece3, Piece piece4)
         {
             const int PlayfieldSize = 7;
 
@@ -179,23 +190,23 @@
             }
             else if (pawn.Col > 0 && pawn.Col < PlayfieldSize)
             {
-                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col + 1, obstacle1, obstacle2, obstacle3, obstacle4) &&
+                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col + 1, piece1, piece2, piece3, piece4) &&
 
-                    !IsPositionEmpty(pawn.Row + 1, pawn.Col - 1, obstacle1, obstacle2, obstacle3, obstacle4))
+                    !IsPositionEmpty(pawn.Row + 1, pawn.Col - 1, piece1, piece2, piece3, piece4))
                 {
                     return false;
                 }
             }
             else if (pawn.Col == 0)
             {
-                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col + 1, obstacle1, obstacle2, obstacle3, obstacle4))
+                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col + 1, piece1, piece2, piece3, piece4))
                 {
                     return false;
                 }
             }
             else if (pawn.Col == PlayfieldSize)
             {
-                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col - 1, obstacle1, obstacle2, obstacle3, obstacle4))
+                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col - 1, piece1, piece2, piece3, piece4))
                 {
                     return false;
                 }
@@ -410,21 +421,21 @@
 
         // Проверява дали позицията на която искаме да се придвижи дадена фигура е свободна! 
         // Ако там вече има фигура - не можеш да се придвижиш върху нея!
-        private static bool IsPositionEmpty(int overlappedRow, int overlappedColumn, Piece piece1, Piece piece2, Piece piece3, Piece piece4)
+        private static bool IsPositionEmpty(int checkedRow, int checkedColumn, Piece piece1, Piece piece2, Piece piece3, Piece piece4)
         {
-            if (overlappedRow == piece1.Row && overlappedColumn == piece1.Col)
+            if (checkedRow == piece1.Row && checkedColumn == piece1.Col)
             {
                 return false;
             }
-            else if (overlappedRow == piece2.Row && overlappedColumn == piece2.Col)
+            else if (checkedRow == piece2.Row && checkedColumn == piece2.Col)
             {
                 return false;
             }
-            else if (overlappedRow == piece3.Row && overlappedColumn == piece3.Col)
+            else if (checkedRow == piece3.Row && checkedColumn == piece3.Col)
             {
                 return false;
             }
-            else if (overlappedRow == piece4.Row && overlappedColumn == piece4.Col)
+            else if (checkedRow == piece4.Row && checkedColumn == piece4.Col)
             {
                 return false;
             }
@@ -438,12 +449,13 @@
         private static void PrintGameBoard(Piece pawnA, Piece pawnB, Piece pawnC, Piece pawnD, Piece king)
         {
             const int BoardWidth = 19;
-            const int PlayfieldWidth = 8;
+            const int LeftDistanceToUpDownBorder = 3;
+            const int PlayfieldSize = 7;
 
             int columnNumeration = 0;
             for (int i = 0; i < BoardWidth; i++)
             {
-                if (i > 3)
+                if (i > LeftDistanceToUpDownBorder)
                 {
                     if (i % 2 == 0)
                     {
@@ -463,7 +475,7 @@
             // печата горната рамка на полето
             for (int i = 0; i <= BoardWidth; i++)
             {
-                if (i < 3)
+                if (i < LeftDistanceToUpDownBorder)
                 {
                     Console.Write(" ");
                 }
@@ -476,7 +488,7 @@
             Console.WriteLine();
 
             // печата игралното поле по редове и колони
-            for (int row = 0; row < PlayfieldWidth; row++)
+            for (int row = 0; row <= PlayfieldSize; row++)
             {
                 int rowNumeration = row;
 
@@ -484,7 +496,7 @@
                 Console.Write("{0} | ", rowNumeration);
 
                 // Тук се печата самото игрално ПОЛЕ!!! С Цар, Пешки и полета "+" или "-"
-                for (int col = 0; col < PlayfieldWidth; col++)
+                for (int col = 0; col <= PlayfieldSize; col++)
                 {
                     char symbol = CheckSymbolAtGivenPosition(pawnA, pawnB, pawnC, pawnD, king, row, col);
 
@@ -498,7 +510,7 @@
             // долната рамка
             for (int i = 0; i <= BoardWidth; i++)
             {
-                if (i < 3)
+                if (i < LeftDistanceToUpDownBorder)
                 {
                     Console.Write(" ");
                 }
