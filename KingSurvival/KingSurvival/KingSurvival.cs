@@ -1,4 +1,4 @@
-﻿namespace Original
+﻿namespace KingSurvival
 {
     using System;
     using System.Linq;

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Original
+namespace KingSurvival
 {
-    class Pawn
+    class Pawn : GamePiece, IRenderable
     {
+        public char[,] GetImage()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
