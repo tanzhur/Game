@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace KingSurvival
+﻿namespace KingSurvival
 {
+    using System.Collections.Generic;
+
     class Engine
     {
         private IRenderer renderer;
@@ -19,7 +19,7 @@ namespace KingSurvival
             while (true)
             {
 
-                renderer.RenderAll();
+
 
             }
         }

@@ -2,6 +2,6 @@
 {
     public interface IRenderer
     {
-        void RenderAll();
+        void Render(char[,] image, int left, int top);
     }
 }

@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
+    <Compile Include="GameBoard.cs" />
     <Compile Include="ConsoleRenderer.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="Engine.cs" />
@@ -55,6 +55,7 @@
     <Compile Include="IRenderer.cs" />
     <Compile Include="King.cs" />
     <Compile Include="KingSurvival.cs" />
+    <Compile Include="Moves.cs" />
     <Compile Include="Pawn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

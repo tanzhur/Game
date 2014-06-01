@@ -39,7 +39,7 @@
             GamePiece king = new King(kingInitialPosition, new char[,] { { 'K' } });
 
             var list = new List<GamePiece> { pawnA, pawnB, pawnC, pawnD, king };
-            var renderer = new ConsoleRenderer(ScreenRows, ScreenCols);
+            var renderer = ConsoleRenderer.Instance;
 
             var engine = new Engine(renderer, list);
             engine.Run();

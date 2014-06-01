@@ -9,12 +9,14 @@ namespace KingSurvival
         {
         }
 
+        // az promenih metodite doly za da se kompilira - preimenuvah i metoda move - trqbva da vrushta buleva stoinost.
+        // ideqta s update spored men trqbva da q obsudim - v tazi igra ne e prilojima spored men // dzhenko
         public override void Update()
         {
-            this.Move();
+            this.TryMove(Moves.DownLeft);
         }
 
-        public void Move()
+        public bool TryMove(Moves move)
         {
             throw new NotImplementedException();
         }
