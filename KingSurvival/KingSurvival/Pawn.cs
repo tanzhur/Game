@@ -1,14 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KingSurvival
 {
-    class Pawn : GamePiece, IRenderable
+    public sealed class Pawn : GamePiece, IMovable
     {
-        public char[,] GetImage()
+        public Pawn(Coordinate initialPosition, char[,] image)
+            : base(initialPosition, image)
+        {
+        }
+
+        public override void Update()
+        {
+            this.Move();
+        }
+
+        public void Move()
         {
             throw new NotImplementedException();
         }

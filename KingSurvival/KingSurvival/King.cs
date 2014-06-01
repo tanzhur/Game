@@ -1,15 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Original;
 
 namespace KingSurvival
 {
-    class King : GamePiece, IRenderable
+    public sealed class King : GamePiece, IMovable
     {
-        public char[,] GetImage()
+        public King(Coordinate initialPosition, char[,] image)
+            : base(initialPosition, image)
+        {
+        }
+
+        public override void Update()
+        {
+
+            this.Move();
+        }
+
+        public void Move()
         {
             throw new NotImplementedException();
         }
