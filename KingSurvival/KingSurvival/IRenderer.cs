@@ -1,7 +1,11 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvivalGame.Interfaces
 {
     public interface IRenderer
     {
-        void Render(char[,] image, int left, int top);
+        void Render(IRenderable target, ICoordinates leftTop);
+
+        void RenderText(string text, ICoordinates leftTop);
+
+        void ClearScreen();
     }
 }

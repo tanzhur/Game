@@ -1,9 +1,7 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvivalGame.Interfaces
 {
     public interface IRenderable
     {
-        Coordinate GetTopLeft();
-
-        char[,] GetImage();
+        char[,] Image { get; }
     }
 }
