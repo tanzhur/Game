@@ -44,24 +44,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
     <Compile Include="GameBoard.cs" />
     <Compile Include="ConsoleRenderer.cs" />
-    <Compile Include="Coordinate.cs" />
+    <Compile Include="Coordinates.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameController.cs" />
     <Compile Include="GamePiece.cs" />
+    <Compile Include="Interfaces\ICoordinates.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="IMovable.cs" />
     <Compile Include="IRenderable.cs" />
     <Compile Include="IRenderer.cs" />
     <Compile Include="King.cs" />
     <Compile Include="KingSurvival.cs" />
-    <Compile Include="Moves.cs" />
+    <Compile Include="Enums\Moves.cs" />
     <Compile Include="Pawn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
