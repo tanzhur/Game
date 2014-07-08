@@ -53,6 +53,7 @@
     <Compile Include="PieceKing.cs" />
     <Compile Include="PiecePawn.cs" />
     <Compile Include="Player1GamePieceBuilder.cs" />
+    <Compile Include="Player2GamePieceBuilder.cs" />
     <Compile Include="PlayersGamePieceBuilder.cs" />
     <Compile Include="RendererConsole.cs" />
     <Compile Include="Coordinates.cs" />
