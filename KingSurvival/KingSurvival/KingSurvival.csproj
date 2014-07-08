@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IPiece.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PieceKing.cs" />
+    <Compile Include="PiecePawn.cs" />
     <Compile Include="RendererConsole.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="GameController.cs" />
