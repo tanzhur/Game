@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="GameBoard.cs" />
+    <Compile Include="Interfaces\IGamePieceFactory.cs" />
     <Compile Include="Interfaces\IPiece.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PieceKing.cs" />
