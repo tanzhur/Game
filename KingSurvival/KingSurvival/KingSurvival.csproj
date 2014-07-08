@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="GameBoard.cs" />
+    <Compile Include="Interfaces\IPiece.cs" />
     <Compile Include="RendererConsole.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="GameController.cs" />
