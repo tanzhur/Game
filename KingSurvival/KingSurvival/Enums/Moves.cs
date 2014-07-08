@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame.Enums
+﻿namespace KingSurvival.Enums
 {
     public enum Moves
     {

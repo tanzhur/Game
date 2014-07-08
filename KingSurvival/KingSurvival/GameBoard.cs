@@ -1,7 +1,8 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvival
 {
     using System;
-    using KingSurvivalGame.Interfaces;
+
+    using Interfaces;
 
     public class GameBoard : IGameBoard, IRenderable, IGamePieceObserver
     {

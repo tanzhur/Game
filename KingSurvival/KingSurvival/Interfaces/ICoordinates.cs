@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame.Interfaces
+﻿namespace KingSurvival.Interfaces
 {
     using System;
 

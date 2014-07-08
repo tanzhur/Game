@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame.Interfaces
+﻿namespace KingSurvival.Interfaces
 {
     public interface IGamePieceFactory // abstract factory design pattern
     {

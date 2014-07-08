@@ -1,8 +1,8 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvival
 {
     using System;
 
-    using KingSurvivalGame.Interfaces;
+    using Interfaces;
 
     public struct Coordinates : ICoordinates, IEquatable<ICoordinates>
     {

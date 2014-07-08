@@ -1,10 +1,10 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvival
 {
     using System;
     using System.Collections.Generic;
 
-    using KingSurvivalGame.Enums;
-    using KingSurvivalGame.Interfaces;
+    using Enums;
+    using Interfaces;
 
     public abstract class Piece : IPiece
     {

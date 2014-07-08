@@ -1,6 +1,6 @@
-﻿namespace KingSurvivalGame.Interfaces
+﻿namespace KingSurvival.Interfaces
 {
-    using KingSurvivalGame.Enums;
+    using Enums;
 
     public interface ICommand
     {

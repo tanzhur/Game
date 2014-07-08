@@ -1,9 +1,9 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvival
 {
     using System;
 
-    using KingSurvivalGame.Enums;
-    using KingSurvivalGame.Interfaces;
+    using Enums;
+    using Interfaces;
 
     public class GameController : IController
     {

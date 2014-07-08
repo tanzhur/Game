@@ -1,7 +1,7 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvival
 {
-    using KingSurvivalGame.Enums;
-    using KingSurvivalGame.Interfaces;
+    using Enums;
+    using Interfaces;
 
     public class PiecePawn : Piece, IPiece
     {

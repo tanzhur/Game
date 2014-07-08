@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
 
+    // original code
     public class KingSurvival
     {
         // Фигура, пази позиция (ред, колона)

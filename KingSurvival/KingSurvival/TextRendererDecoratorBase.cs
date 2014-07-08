@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvival
 {
     public abstract class TextRendererDecoratorBase : RendererBase // decorator design pattern decorator base
     {
