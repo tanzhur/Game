@@ -1,4 +1,4 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvivalGame
 {
     public static class GameConstants
     {
