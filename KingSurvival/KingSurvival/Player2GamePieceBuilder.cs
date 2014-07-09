@@ -40,8 +40,8 @@
 
         public override IPiece GetPiece()
         {
-            this.pieceIndex++; // getting ready for the next piece only after we take this one
-            // protect the data here - if index out of range ??
+            // getting ready for the next piece only after we take this one
+            this.pieceIndex++;
             return this.Piece;
         }
     }

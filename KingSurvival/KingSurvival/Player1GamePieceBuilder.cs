@@ -37,8 +37,14 @@
 
         public override IPiece GetPiece()
         {
-            this.pieceIndex++; // getting ready for the next piece only after we take this one
+            // getting ready for the next piece only after we take this one
             // protect the data here - if index out of range ??
+            this.pieceIndex++;
+            if (this.pieceIndex >= startPositionsX.Length)
+            {
+                this.pieceIndex = 0;
+            }
+
             return this.Piece;
         }
     }
