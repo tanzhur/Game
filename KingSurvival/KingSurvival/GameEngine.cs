@@ -51,7 +51,61 @@
             this.ShowGameOutcome();
         }
 
-        private void PlayerTurn(LogicPlayerPieceMover logicPlayerPieceMover, string p)
+        private void PlayerTurn(LogicPlayerPieceMover playerLogic, string messageToPlayer)
+        {
+            this.pieceMover.PieceMoverStrategy = playerLogic;
+
+            while (true)
+            {
+                this.ShowGameBoard();
+                this.ShowMessageBellowGameBoard(messageToPlayer);
+
+                var command = this.controller.GetCommand();
+
+                if (command == null)
+                {
+                    this.ShowIllegalMove();
+                    continue;
+                }
+
+                var pieceToMove = this.pieceMover.FindPieceToMove(command, this.allPieces);
+
+                if (pieceToMove == null)
+                {
+                    this.ShowIllegalMove();
+                    continue;
+                }
+
+                var newPieceCoordinates = pieceToMove.GetNewCoordinates(command.Move);
+
+                if (!this.IsPossibleMove(pieceToMove, newPieceCoordinates))
+                {
+                    this.ShowIllegalMove();
+                    continue;
+                }
+
+                pieceToMove.Move(newPieceCoordinates);
+                break;
+            }
+            this.CheckGameState();
+        }
+
+        private void ShowIllegalMove()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private bool IsPossibleMove(IPiece pieceToMove, ICoordinates newPieceCoordinates)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void ShowMessageBellowGameBoard(string messageToPlayer)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void ShowGameBoard()
         {
             throw new System.NotImplementedException();
         }
