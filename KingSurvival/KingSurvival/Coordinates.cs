@@ -26,7 +26,7 @@
 
             private set
             {
-                // TODO: check data
+                Validator.CheckValueIsNull(value, "X Coordinates");
                 this.x = value;
             }
         }
@@ -40,7 +40,7 @@
 
             private set
             {
-                // TODO: check data
+                Validator.CheckValueIsNull(value, "Y Coordinates");
                 this.y = value;
             }
         }
