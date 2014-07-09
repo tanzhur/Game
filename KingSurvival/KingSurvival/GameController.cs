@@ -20,19 +20,19 @@
 
             var currentCommandMove = currentCommandAsString.Substring(1, 2);
 
-            if (currentCommandMove == "UR")
+            if (currentCommandMove == GameConstants.CommandMoveUpRight)
             {
                 return new Command(currentCommandID, Moves.UpRight);
             }
-            else if (currentCommandMove == "UL")
+            else if (currentCommandMove == GameConstants.CommandMoveUpLeft)
             {
                 return new Command(currentCommandID, Moves.UpLeft);
             }
-            else if (currentCommandMove == "DR")
+            else if (currentCommandMove == GameConstants.CommandMoveDownRight)
             {
                 return new Command(currentCommandID, Moves.DownRight);
             }
-            else if (currentCommandMove == "DL")
+            else if (currentCommandMove == GameConstants.CommandMoveDownLeft)
             {
                 return new Command(currentCommandID, Moves.DownLeft);
             }
