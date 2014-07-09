@@ -42,6 +42,11 @@
         {
             // getting ready for the next piece only after we take this one
             this.pieceIndex++;
+            if (this.pieceIndex >= startPositionsX.Length)
+            {
+                this.pieceIndex = 0;
+            }
+
             return this.Piece;
         }
     }
