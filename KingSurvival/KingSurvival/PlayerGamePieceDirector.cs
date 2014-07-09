@@ -9,7 +9,7 @@
 
         public PlayerGamePieceDirector(PlayersGamePieceBuilder builder)
         {
-            // check data
+            Validator.CheckValueIsNull(builder, "Builder for the director");
             this.builder = builder; 
         }
 
