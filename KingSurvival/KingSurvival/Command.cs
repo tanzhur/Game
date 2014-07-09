@@ -23,7 +23,7 @@
 
             private set
             {
-                // TODO: check Data
+                Validator.CheckCharIsNotLetter(value, "Target ID");
                 this.targetID = value;
             }
         }
@@ -37,7 +37,7 @@
 
             private set
             {
-                // TODO: check Data
+                Validator.CheckValueIsNull(value, "Move coordinates");
                 this.move = value;
             }
         }
