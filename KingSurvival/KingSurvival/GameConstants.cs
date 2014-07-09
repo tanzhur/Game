@@ -27,5 +27,10 @@
         public const string IllegalMove = "Illegal move!";
         public const string player1Turn = "King's turn: ";
         public const string player2Turn = "Pawns' turn: ";
+
+        public const string CommandMoveUpRight = "UR";
+        public const string CommandMoveUpLeft = "UL";
+        public const string CommandMoveDownRight = "DR";
+        public const string CommandMoveDownLeft = "DL";
     }
 }
