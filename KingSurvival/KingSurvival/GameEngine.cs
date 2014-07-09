@@ -90,24 +90,56 @@
             this.CheckGameState();
         }
 
-        private void ShowIllegalMove()
+        private void CheckGameState()
         {
             throw new System.NotImplementedException();
+        }
+
+        private void ShowIllegalMove()
+        {
+            this.ShowMessageBellowGameBoard(GameConstants.IllegalMove, 2);
+            this.controller.PressAnyKey();
         }
 
         private bool IsPossibleMove(IPiece pieceToMove, ICoordinates newPieceCoordinates)
         {
-            throw new System.NotImplementedException();
+            if (newPieceCoordinates.X<0||
+                newPieceCoordinates.X>=this.gameBoard.PlayfieldSize||
+                newPieceCoordinates.Y<0 ||
+                newPieceCoordinates.Y>= this.gameBoard.PlayfieldSize)
+            {
+                return false;
+            }
+
+            foreach (var list in this.allPieces)
+            {
+                foreach (var piece in list)
+                {
+                    if (pieceToMove==piece)
+                    {
+                        continue;
+                    }
+
+                    if (pieceToMove.Coordinates.Equals(piece.Coordinates))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
-        private void ShowMessageBellowGameBoard(string messageToPlayer)
+        private void ShowMessageBellowGameBoard(string messageToPlayer, int linesBellowBoard)
         {
-            throw new System.NotImplementedException();
+            this.renderer.RenderText(messageToPlayer,
+                new Coordinates(this.initialGameBoardCoordinates.X,
+                    this.initialGameBoardCoordinates.Y + this.gameBoard.Height + linesBellowBoard));
         }
 
         private void ShowGameBoard()
         {
-            throw new System.NotImplementedException();
+            this.renderer.Render(this.gameBoard, this.initialGameBoardCoordinates);
         }
 
         private void ShowGameOutcome()
