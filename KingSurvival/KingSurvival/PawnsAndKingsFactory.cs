@@ -2,7 +2,7 @@
 {
     using Interfaces;
 
-    // abstract factory design pattern
+    // abstract factory design pattern.
     public class PawnsAndKingsFactory : IGamePieceFactory 
     {
         public IPiece CreatePlayer1Piece()
