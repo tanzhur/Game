@@ -6,7 +6,7 @@
 
         public Game()
         {
-            var renderer = new GameRenderer(null); // fix this null mother fucker
+            var renderer = new GameRenderer(null); //TODO: fix this null mother fucker
             var controller = new GameController();
 
             this.engine = new GameEngine(renderer, controller);
