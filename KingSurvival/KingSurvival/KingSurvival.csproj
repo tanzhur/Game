@@ -74,6 +74,7 @@
     <Compile Include="RendererBase.cs" />
     <Compile Include="TextRendererDecorator.cs" />
     <Compile Include="TextRendererDecoratorBase.cs" />
+    <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

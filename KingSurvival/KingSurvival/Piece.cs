@@ -17,7 +17,6 @@
 
         public Piece()
         {
-            // must remain an empty ctor for builder design pattern!
             this.observers = new List<IGamePieceObserver>();
         }
 
@@ -30,7 +29,10 @@
 
             set
             {
-                // TODO: CheckData
+                if (char.IsLetter(value))
+                {
+
+                }
                 this.id = value;
             }
         }
@@ -44,7 +46,6 @@
 
             set
             {
-                // TODO: CheckData
                 this.coordinates = value;
             }
         }
