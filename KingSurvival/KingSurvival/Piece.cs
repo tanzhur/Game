@@ -29,10 +29,7 @@
 
             set
             {
-                if (char.IsLetter(value))
-                {
-
-                }
+                Validator.CheckCharIsNotLetter(value, "Piece ID");
                 this.id = value;
             }
         }
@@ -46,6 +43,7 @@
 
             set
             {
+                Validator.CheckValueIsNull(value, "Piece coordinates");
                 this.coordinates = value;
             }
         }
