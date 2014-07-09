@@ -9,6 +9,7 @@
 
         public PlayersGamePieceBuilder(IGamePieceFactory factory)
         {
+            Validator.CheckValueIsNull(factory, "Factory for the builder");
             this.Factory = factory;
         }
 
