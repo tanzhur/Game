@@ -2,13 +2,15 @@
 {
     using Interfaces;
 
-    public class PlayerGamePieceDirector // builder design pattern this is the director
+    // builder design pattern this is the director
+    public class PlayerGamePieceDirector 
     {
         private readonly PlayersGamePieceBuilder builder;
 
         public PlayerGamePieceDirector(PlayersGamePieceBuilder builder)
         {
-            this.builder = builder; // check data
+            // check data
+            this.builder = builder; 
         }
 
         public void CreateGamePiece()

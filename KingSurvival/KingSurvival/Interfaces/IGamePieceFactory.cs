@@ -1,6 +1,7 @@
 ﻿namespace KingSurvival.Interfaces
 {
-    public interface IGamePieceFactory // abstract factory design pattern
+    // abstract factory design pattern
+    public interface IGamePieceFactory 
     {
         IPiece CreatePlayer1Piece();
 

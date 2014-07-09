@@ -2,8 +2,8 @@
 {
     using Interfaces;
 
-    public class Player1GamePieceBuilder : PlayersGamePieceBuilder
     // builder design pattern - knows how and which properties to set on player one pieces
+    public class Player1GamePieceBuilder : PlayersGamePieceBuilder
     {
         private readonly char[] PieceID = new char[] { GameConstants.KingName };
 

@@ -4,7 +4,8 @@
 
     using Interfaces;
 
-    public class PlayersAllGamePiecesCreator //facade design pattern //singleton ?
+    //facade design pattern
+    public class PlayersAllGamePiecesCreator 
     {
         public PlayersAllGamePiecesCreator()
         {

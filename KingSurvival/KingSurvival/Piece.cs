@@ -11,8 +11,9 @@
         private char id;
         private ICoordinates coordinates;
 
-        protected readonly IList<IGamePieceObserver> observers; // needed by observer patern (each figure holds a list of observers that
-        // it needs to notify everytime it moves
+        // needed by observer patern (each figure holds a list of 
+        // observers that it needs to notify everytime it moves)
+        protected readonly IList<IGamePieceObserver> observers; 
 
         public Piece()
         {

@@ -2,13 +2,14 @@
 {
     using Interfaces;
 
-    public abstract class PlayersGamePieceBuilder // builder design pattern - this is the base
+    // builder design pattern - this is the base
+    public abstract class PlayersGamePieceBuilder 
     {
         protected readonly IGamePieceFactory Factory;
 
         public PlayersGamePieceBuilder(IGamePieceFactory factory)
         {
-            this.Factory = factory; // check data
+            this.Factory = factory;
         }
 
         protected IPiece Piece;
