@@ -22,6 +22,9 @@
         };
 
         private const int TotalPlayfieldSize = 8;
+        private const int TopBoardOffset = 2;
+        private const int LeftBoardOffset = 4;
+        private const int DisplayBoardPlaceSize = 2;
 
         private char[,] currentGameFieldObjects;
 
@@ -66,17 +69,21 @@
             }
         }
 
-        public void Notify(char ID, ICoordinates newPosition)
+        public void Notify(char id, ICoordinates newPosition)
         {
             int oldRow;
             int oldCol;
+            int newDisplayPositionRow;
+            int newDisplayPositionCol;
 
-            if (this.TryFindIDOnBoard(ID,out oldRow, out oldCol))
+            if (this.TryFindIDOnBoard(id, out oldRow, out oldCol))
             {
                 this.currentGameFieldObjects[oldRow, oldCol] = this.OriginalGameFieldObjects[oldRow, oldCol];
 
-                // TODO: Fix proper piece placement
-                this.currentGameFieldObjects[newPosition.X, newPosition.Y] = ID;
+                newDisplayPositionRow = TopBoardOffset + newPosition.Y;
+                newDisplayPositionCol = LeftBoardOffset + DisplayBoardPlaceSize * newPosition.X;
+
+                this.currentGameFieldObjects[newDisplayPositionRow, newDisplayPositionCol] = id;
             }
         }
 
@@ -114,7 +121,7 @@
             }
             oldRow = -1;
             oldCol = -1;
-			
+
             return false;
         }
     }
