@@ -3,7 +3,7 @@
     using Interfaces;
     public class GameRenderer : TextRendererDecorator, IRenderer
     {
-        public GameRenderer(RendererBase renderBase)
+        public GameRenderer(RendererPlain renderBase)
             : base(renderBase) { }
 
         public void Render(IRenderable target, ICoordinates leftTop)

@@ -2,9 +2,11 @@
 {
     public class TextRendererDecorator : TextRendererDecoratorBase // decorator design pattern concrete decorator
     {
-        public TextRendererDecorator(RendererBase rendererBase) 
+        public TextRendererDecorator(RendererPlain rendererBase) 
             : base(rendererBase)
         {
+            
+
         }
 
         public override void RenderText(string text, int offsetX, int offsetY)
