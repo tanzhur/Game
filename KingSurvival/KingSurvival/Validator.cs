@@ -1,4 +1,6 @@
-﻿namespace KingSurvival
+﻿using System.Diagnostics;
+
+namespace KingSurvival
 {
     using System;
     public static class Validator
@@ -33,6 +35,13 @@
             {
                 throw new ArgumentException(propertyName + " must be letter.");
             }
+        }
+
+        private static void GetMethodClass(out String className, out String methodName)
+        {
+            var stackTrace = new StackTrace();
+            methodName = stackTrace.GetFrame(2).GetMethod().Name;
+            className = stackTrace.GetFrame(2).GetType().Name;
         }
     }
 }
