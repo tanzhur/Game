@@ -1,11 +1,11 @@
 ﻿namespace KingSurvival
 {
-    public class MainGame
+    public static class MainGame
     {
         public static void Main()
         {
-            var game = new Game();
-            game.Start();
+           var game = new Game();
+           game.Start();
         }
     }
 }
