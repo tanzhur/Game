@@ -6,7 +6,7 @@
 
         protected TextRendererDecoratorBase(RendererPlain rendererBase)
         {
-            Validator.CheckValueIsNull(rendererBase, "Render base cannot be null.");
+            Validator.CheckValueIsNull(rendererBase, "Base renderer");
             this.rendererBase = rendererBase;
         }
 
