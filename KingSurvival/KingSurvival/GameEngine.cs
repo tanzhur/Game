@@ -1,9 +1,6 @@
 ﻿namespace KingSurvival
 {
     using System.Collections.Generic;
-    using System.Threading;
-
-    using Enums;
     using Interfaces;
 
     public class GameEngine
@@ -14,8 +11,8 @@
         private readonly IGameBoard gameBoard;
         private readonly ICoordinates initialGameBoardCoordinates;
         private readonly LogicPieceMover pieceMover;
-        private readonly LogicPlayerPieceMover player1MoveLogic,
-                                               player2MoveLogic;
+        private readonly LogicPlayerPieceMover playerOneMoveLogic,
+                                               playerTwoMoveLogic;
 
         private bool gameIsRunning;
         private bool kingIsStuck;
@@ -29,8 +26,8 @@
             this.allPieces = new PlayersAllGamePiecesCreator().CreateGamePieces();
             this.gameBoard = new GameBoard();
 
-            this.player1MoveLogic = new LogicPlayerPieceMover(0);
-            this.player2MoveLogic = new LogicPlayerPieceMover(1);
+            this.playerOneMoveLogic = new LogicPlayerPieceMover(0);
+            this.playerTwoMoveLogic = new LogicPlayerPieceMover(1);
             this.initialGameBoardCoordinates = new Coordinates(0, 0);
             this.gameIsRunning = true;
         }
@@ -40,12 +37,12 @@
         {
             while (this.gameIsRunning)
             {
-                PlayerTurn(this.player1MoveLogic, GameConstants.player1Turn);
+                PlayerTurn(this.playerOneMoveLogic, GameConstants.player1Turn);
                 if (!this.gameIsRunning)
                 {
                     break;
                 }
-                PlayerTurn(this.player2MoveLogic, GameConstants.player1Turn);
+                PlayerTurn(this.playerTwoMoveLogic, GameConstants.player1Turn);
             }
 
             this.ShowGameOutcome();
@@ -58,7 +55,7 @@
             while (true)
             {
                 this.ShowGameBoard();
-                this.ShowMessageBellowGameBoard(messageToPlayer);
+                this.ShowMessageBellowGameBoard(messageToPlayer, 5); // added 5 
 
                 var command = this.controller.GetCommand();
 
