@@ -17,6 +17,8 @@ namespace KingSurvival
                       exception.GetType(), ConvertFilePathToFileName(source), method, line);
             Console.WriteLine(result);
             Log(result, exception.GetOriginalException());
+            // Added for tests to catch exception otherwise doesn't throw it
+            throw new ArgumentNullException(result);
             Environment.Exit(0);
         }
 

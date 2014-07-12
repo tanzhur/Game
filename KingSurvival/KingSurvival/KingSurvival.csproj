@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\IGamePieceFactory.cs" />
     <Compile Include="GameConstants.cs" />
     <Compile Include="Interfaces\IPiece.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="LogicPieceMover.cs" />
     <Compile Include="LogicPlayerPieceMover.cs" />
     <Compile Include="MainGame.cs" />
