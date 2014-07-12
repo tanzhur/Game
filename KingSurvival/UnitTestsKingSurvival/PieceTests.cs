@@ -16,8 +16,8 @@
         [TestMethod]
         public void TestPieceInitializationAndIDSetWithRealChar()
         {
-            piece.ID = 'a';
-            Assert.AreEqual('a', piece.ID);
+            piece.ID = 'K';
+            Assert.AreEqual('K', piece.ID);
         }
 
         [TestMethod]
