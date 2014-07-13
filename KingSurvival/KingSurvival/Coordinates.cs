@@ -26,6 +26,12 @@
 
             private set
             {
+                // TODO: move to validator.
+                if (value < 0 || value > 7)
+                {
+                    throw new ArgumentException("Coordinates value must be between [0-7]");
+                }
+
                 Validator.CheckValueIsNull(value, "X Coordinates");
                 this.x = value;
             }
@@ -40,6 +46,12 @@
 
             private set
             {
+                // TODO: move to validator.
+                if (value < 0 || value > 7)
+                {
+                    throw new ArgumentException("Coordinates value must be between [0-7]");
+                }
+
                 Validator.CheckValueIsNull(value, "Y Coordinates");
                 this.y = value;
             }

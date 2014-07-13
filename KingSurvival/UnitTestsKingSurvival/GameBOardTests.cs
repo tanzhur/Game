@@ -16,6 +16,7 @@
         private const int DefaultTotalFieldSize = 8;
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestGameBoardInitialization()
         {
             GameBoard boardTest = new GameBoard();
@@ -23,6 +24,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestGameBoardWidthIfItIsTheCorrectDefaultValue()
         {
             bool testResult = board.Width == DefaultWidth;
@@ -30,6 +32,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestGameBoardHeightIfItIsTheCorrectDefaultValue()
         {
             bool testResult = board.Height == DefaultHeight;
@@ -37,6 +40,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestGameBoardTotalFieldSizeCorrect()
         {
             bool testResult = board.PlayfieldSize == DefaultTotalFieldSize;
@@ -44,6 +48,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestGameBoardImageCorrectness()
         {
             var matrix = board.Image;
@@ -53,6 +58,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestGameBoard()
         {
             var matrix = board.Image;
@@ -62,12 +68,25 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestGameBoardTryFindIDOnBoard()
         {
             pieceKing.ID = 'K';
             pieceKing.Coordinates = coords;
             pieceKing.SubscribeToGamePieceObserver(board);
             board.Notify('K', new Coordinates(5,5));
+
+            Assert.IsTrue(TestRanThrough);
+        }
+
+        [TestMethod]
+        [TestCategory("FunctionalityTests")]
+        public void TestGameBoardTryFindNonexistentID()
+        {
+            pieceKing.ID = 'P';
+            pieceKing.Coordinates = coords;
+            pieceKing.SubscribeToGamePieceObserver(board);
+            board.Notify('P', new Coordinates(5, 5));
 
             Assert.IsTrue(TestRanThrough);
         }

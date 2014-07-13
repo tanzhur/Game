@@ -14,6 +14,7 @@
 
         // Methods for tests that will be equal to those for other pieces PiecePawn for example testing parent class methods
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestPieceInitializationAndIDSetWithRealChar()
         {
             piece.ID = 'K';
@@ -21,20 +22,7 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestPieceInitializationAndIDSetWithIncorrectValueNumber()
-        {
-            piece.ID = '4';
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestPieceInitializationAndIDSetWithIncorrectSpecialSymbol()
-        {
-            piece.ID = '#';
-        }
-
-        [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceSetCoordinatesToACorrectValue()
         {
             piece.Coordinates = coords;
@@ -42,13 +30,7 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void TestPieceSetCoordinatesToANullValueForCoordinates()
-        {
-            piece.Coordinates = null;
-        }
-
-        [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceSubscribeToGamePieceObserver()
         {
             piece.SubscribeToGamePieceObserver(gameBoard);
@@ -56,6 +38,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceSubscribeToGamePieceObserverWithANullArgument()
         {
             piece.SubscribeToGamePieceObserver(null);
@@ -63,6 +46,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceUnSubscribeFromGamePieceObserver()
         {
             piece.UnSubscribeFromGamePieceObserver(gameBoard);
@@ -70,6 +54,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceUnSubscribeFromGamePieceObserverThatAllreadyIsObserver()
         {
             piece.SubscribeToGamePieceObserver(gameBoard);
@@ -78,6 +63,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceUnSubscribeFromGamePieceObserverFromEmptyListOfObservers()
         {
             piece.UnSubscribeFromGamePieceObserver(null);
@@ -85,6 +71,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceNotifyObserversWithCurrentlyOneOrMoreObservers()
         {
             piece.SubscribeToGamePieceObserver(gameBoard);
@@ -95,10 +82,35 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceNotifyObserversWithCurrentlyNoObservers()
         {
             piece.NotifyObservers();
             Assert.IsTrue(currentTestRan);
+        }
+
+        [TestMethod]
+        [TestCategory("ExpectionExceptions")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestPieceInitializationAndIDSetWithIncorrectValueNumber()
+        {
+            piece.ID = '4';
+        }
+
+        [TestMethod]
+        [TestCategory("ExpectionExceptions")]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestPieceInitializationAndIDSetWithIncorrectSpecialSymbol()
+        {
+            piece.ID = '#';
+        }
+
+        [TestMethod]
+        [TestCategory("ExpectionExceptions")]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestPieceSetCoordinatesToANullValueForCoordinates()
+        {
+            piece.Coordinates = null;
         }
     }
 }

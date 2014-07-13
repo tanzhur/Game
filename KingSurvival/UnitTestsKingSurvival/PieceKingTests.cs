@@ -12,6 +12,7 @@
         private readonly Coordinates coords = new Coordinates(4, 4);
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestPieceKingGetNewCoordinatesWithUpLeftMove()
         {
             Moves move = Moves.UpLeft;
@@ -24,6 +25,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestPieceKingGetNewCoordinatesWithUpRightMove()
         {
             Moves move = Moves.UpRight;
@@ -36,6 +38,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestPieceKingGetNewCoordinatesWithDownLeftMove()
         {
             Moves move = Moves.DownLeft;
@@ -48,6 +51,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestPieceKingGetNewCoordinatesWithDownRightMove()
         {
             Moves move = Moves.DownRight;
@@ -60,6 +64,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestPieceKingGetNewCoordinatesWithInValidMove()
         {
             Moves move = (Moves)5;
@@ -70,6 +75,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceKingIsValidCommandWithValidCommandID()
         {
             pieceKing.ID = 'K';
@@ -82,6 +88,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceKingIsValidCommandWithInValidCommandID()
         {
             pieceKing.ID = 'K';
@@ -94,6 +101,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceKingIsValidCommandWithValidCommandMoveDownLeft()
         {
             pieceKing.ID = 'K';
@@ -106,6 +114,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceKingIsValidCommandWithValidCommandMoveDownRight()
         {
             pieceKing.ID = 'K';
@@ -118,6 +127,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceKingIsValidCommandWithValidCommandMoveUpLeft()
         {
             pieceKing.ID = 'K';
@@ -130,6 +140,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceKingIsValidCommandWithValidCommandMoveUpRight()
         {
             pieceKing.ID = 'K';
@@ -142,6 +153,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceKingIsValidCommandWithInValidCommand()
         {
             pieceKing.ID = 'K';
@@ -154,6 +166,7 @@
         }
 
         [TestMethod]
+        [TestCategory("FunctionalityTests")]
         public void TestPieceKingMoveWithValidNewCoordinates()
         {
             Coordinates newCoords = new Coordinates(3, 3);
@@ -166,6 +179,7 @@
         }
 
         [TestMethod]
+        [TestCategory("ExpectionExceptions")]
         [ExpectedException(typeof(NullReferenceException))]
         public void TestPieceKingMoveWithInValidNewCoordinates()
         {
