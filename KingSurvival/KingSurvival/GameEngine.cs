@@ -26,7 +26,7 @@
             this.controller = controller;
 
             this.allPieces = new PlayersAllGamePiecesCreator().CreateGamePieces();
-            this.gameBoard = new GameBoard();
+            this.gameBoard = GameBoard.Instance;
 
             this.pieceMover = new LogicPieceMover();
             this.playerOneMoveLogic = new LogicPlayerPieceMover(0);

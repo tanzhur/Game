@@ -28,7 +28,9 @@
 
         private char[,] currentGameFieldObjects;
 
-        public GameBoard()
+        private static GameBoard instance;
+
+        private GameBoard()
         {
             this.currentGameFieldObjects = new char[,] {    
             {' ',' ',' ',' ','0',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' ',' '},
@@ -43,6 +45,19 @@
             {'7',' ','|',' ','-',' ','+',' ','–',' ','K',' ','–',' ','+',' ','–',' ','+',' ','|'},
             {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '}
         };
+        }
+
+        public static GameBoard Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameBoard();
+                }
+
+                return instance;
+            }
         }
 
         public int Width
