@@ -6,7 +6,9 @@
 
         public Game()
         {
-            var renderer = new GameRenderer(null); //TODO: fix this null mother fucker
+            var decoratedRenderer = new TextRendererDecorator(new RendererConsole());
+            var renderer = new GameRendererAdaptor(decoratedRenderer);
+
             var controller = new GameController();
 
             this.engine = new GameEngine(renderer, controller);

@@ -1,10 +1,10 @@
 ﻿namespace KingSurvival
 {
-    public abstract class TextRendererDecoratorBase : RendererPlain // decorator design pattern decorator base
+    public abstract class TextRendererDecoratorBase : RendererBase // decorator design pattern decorator base
     {
-        private readonly RendererPlain rendererBase;
+        private readonly RendererBase rendererBase;
 
-        protected TextRendererDecoratorBase(RendererPlain rendererBase)
+        protected TextRendererDecoratorBase(RendererBase rendererBase)
         {
             Validator.CheckValueIsNull(rendererBase, "Base renderer");
             this.rendererBase = rendererBase;

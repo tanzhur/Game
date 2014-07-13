@@ -2,7 +2,7 @@
 {
     public class TextRendererDecorator : TextRendererDecoratorBase // decorator design pattern concrete decorator
     {
-        public TextRendererDecorator(RendererPlain rendererBase) 
+        public TextRendererDecorator(RendererBase rendererBase) 
             : base(rendererBase)
         {
             
