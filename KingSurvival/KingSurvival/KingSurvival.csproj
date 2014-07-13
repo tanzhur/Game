@@ -67,7 +67,7 @@
     <Compile Include="RendererConsole.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="GameController.cs" />
-    <Compile Include="GameRenderer.cs" />
+    <Compile Include="GameRendererAdaptor.cs" />
     <Compile Include="Interfaces\ICoordinates.cs" />
     <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\ICommand.cs" />

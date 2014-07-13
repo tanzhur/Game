@@ -1,6 +1,8 @@
 ﻿namespace KingSurvival
 {
     using Interfaces;
+
+    // adaptor design pattern
     public class GameRendererAdaptor : IRenderer
     {
         private TextRendererDecoratorBase textRendererDecorator;
