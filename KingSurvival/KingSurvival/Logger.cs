@@ -19,7 +19,6 @@ namespace KingSurvival
             Log(result, exception.GetOriginalException());
             // Added for tests to catch exception otherwise doesn't throw it
             throw new ArgumentNullException(result);
-            Environment.Exit(0);
         }
 
         private static void Log(string log, Exception exception)

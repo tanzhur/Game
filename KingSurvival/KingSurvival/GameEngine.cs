@@ -7,12 +7,14 @@
     {
         private readonly IRenderer renderer;
         private readonly IController controller;
+
         private readonly IList<IList<IPiece>> allPieces;
         private readonly IGameBoard gameBoard;
         private readonly ICoordinates initialGameBoardCoordinates;
+
         private readonly LogicPieceMover pieceMover;
-        private readonly LogicPlayerPieceMover playerOneMoveLogic,
-                                               playerTwoMoveLogic;
+        private readonly LogicPlayerPieceMover playerOneMoveLogic;
+        private readonly LogicPlayerPieceMover playerTwoMoveLogic;
 
         private bool gameIsRunning;
         private bool kingIsStuck;
@@ -26,9 +28,11 @@
             this.allPieces = new PlayersAllGamePiecesCreator().CreateGamePieces();
             this.gameBoard = new GameBoard();
 
+            this.pieceMover = new LogicPieceMover();
             this.playerOneMoveLogic = new LogicPlayerPieceMover(0);
             this.playerTwoMoveLogic = new LogicPlayerPieceMover(1);
             this.initialGameBoardCoordinates = new Coordinates(0, 0);
+
             this.gameIsRunning = true;
         }
 
@@ -55,7 +59,7 @@
             while (true)
             {
                 this.ShowGameBoard();
-                this.ShowMessageBellowGameBoard(messageToPlayer, 5); // added 5 
+                this.ShowMessageBellowGameBoard(messageToPlayer, GameConstants.MessageToPlayerOffset);
 
                 var command = this.controller.GetCommand();
 
@@ -94,7 +98,7 @@
 
         private void ShowIllegalMove()
         {
-            this.ShowMessageBellowGameBoard(GameConstants.IllegalMove, 2);
+            this.ShowMessageBellowGameBoard(GameConstants.IllegalMove, GameConstants.MessageToPlayerOffset);
             this.controller.PressAnyKey();
         }
 
