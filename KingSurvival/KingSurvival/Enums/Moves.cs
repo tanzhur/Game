@@ -2,7 +2,7 @@
 {
     public enum Moves
     {
-        //enumaration for all possible moves
+        //enumeration for all possible moves
         DownRight,
         DownLeft,
         UpRight,
