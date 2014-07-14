@@ -90,7 +90,7 @@
         }
 
         [TestMethod]
-        [TestCategory("ExpectionExceptions")]
+        [TestCategory("ExpectingExceptions")]
         [ExpectedException(typeof(ArgumentException))]
         public void TestPieceInitializationAndIDSetWithIncorrectValueNumber()
         {
@@ -98,7 +98,7 @@
         }
 
         [TestMethod]
-        [TestCategory("ExpectionExceptions")]
+        [TestCategory("ExpectingExceptions")]
         [ExpectedException(typeof(ArgumentException))]
         public void TestPieceInitializationAndIDSetWithIncorrectSpecialSymbol()
         {
@@ -106,7 +106,7 @@
         }
 
         [TestMethod]
-        [TestCategory("ExpectionExceptions")]
+        [TestCategory("ExpectingExceptions")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestPieceSetCoordinatesToANullValueForCoordinates()
         {

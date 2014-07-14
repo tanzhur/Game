@@ -129,7 +129,7 @@ namespace UnitTestsKingSurvival
         }
 
         [TestMethod]
-        [TestCategory("ExpectionExceptions")]
+        [TestCategory("ExpectingExceptions")]
         [ExpectedException(typeof(NullReferenceException))]
         public void TestPiecePawnMoveWithInValidNewCoordinates()
         {

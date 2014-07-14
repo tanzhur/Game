@@ -22,7 +22,7 @@
         }
 
         [TestMethod]
-        [TestCategory("ExpectiongException")]
+        [TestCategory("ExpectingExceptions")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PlayerGamePieceDirectorInitializationWithNullValueInConstructor()
         {

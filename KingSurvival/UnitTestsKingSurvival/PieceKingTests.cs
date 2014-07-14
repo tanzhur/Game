@@ -179,7 +179,7 @@
         }
 
         [TestMethod]
-        [TestCategory("ExpectionExceptions")]
+        [TestCategory("ExpectingExceptions")]
         [ExpectedException(typeof(NullReferenceException))]
         public void TestPieceKingMoveWithInValidNewCoordinates()
         {

@@ -64,6 +64,8 @@
     <Compile Include="Player2GamePieceBuilderTests.cs" />
     <Compile Include="PlayerGamePieceDirectorTests.cs" />
     <Compile Include="PlayersAllGamePiecesCreatorTests.cs" />
+    <Compile Include="TestConsole.cs" />
+    <Compile Include="TestConsoleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KingSurvival\KingSurvival.csproj">
