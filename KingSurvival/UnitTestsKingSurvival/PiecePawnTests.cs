@@ -104,32 +104,6 @@ namespace UnitTestsKingSurvival
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPiecePawnIsValidCommandWithValidCommandMoveUpLeft()
-        {
-            piecePawn.ID = pieceID;
-            Moves move = Moves.UpLeft;
-            Command command = new Command(pieceID, move);
-
-            bool result = piecePawn.IsValidCommand(command);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPiecePawnIsValidCommandWithValidCommandMoveUpRight()
-        {
-            piecePawn.ID = pieceID;
-            Moves move = Moves.UpRight;
-            Command command = new Command(pieceID, move);
-
-            bool result = piecePawn.IsValidCommand(command);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
         public void TestPiecePawnIsValidCommandWithInValidCommand()
         {
             piecePawn.ID = pieceID;
