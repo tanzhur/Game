@@ -90,5 +90,27 @@
 
             Assert.IsTrue(TestRanThrough);
         }
+
+        [TestMethod]
+        [TestCategory("FunctionalityTests")]
+        public void TestGameBoardInstance()
+        {
+            var matrix = GameBoard.Instance;
+
+            bool result = true;
+
+            for (int i = 0; i < matrix.Height; i++)
+            {
+                for (int j = 0; j < matrix.Width; j++)
+                {
+                    if (matrix.Image[i,j] != board.Image[i,j])
+                    {
+                        result = false;
+                    }
+                }
+            }
+
+            Assert.IsTrue(result);
+        }
     }
 }
