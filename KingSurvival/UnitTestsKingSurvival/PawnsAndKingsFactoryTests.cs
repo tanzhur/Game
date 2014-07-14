@@ -11,6 +11,7 @@
         private readonly PawnsAndKingsFactory factory = new PawnsAndKingsFactory();
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void FactoryMakingPieceKingWithCreatePlayer1Piece()
         {
             IPiece piecePawn = factory.CreatePlayer1Piece();
@@ -21,6 +22,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void FactoryMakingPiecePawnWithCreatePlayer2Piece()
         {
             IPiece piecePawn = factory.CreatePlayer2Piece();

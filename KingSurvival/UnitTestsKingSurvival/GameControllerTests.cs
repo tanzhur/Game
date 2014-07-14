@@ -10,6 +10,7 @@ namespace UnitTestsKingSurvival
     public class GameControllerTests
     {
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void GameControllerInitializationTest()
         {
         }

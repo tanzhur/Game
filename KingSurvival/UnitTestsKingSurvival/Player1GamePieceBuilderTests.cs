@@ -9,6 +9,7 @@
     {
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void Player1GamePieceBuilderTestCreatePieceMethod()
         {
             var builder = CreateBuilder();
@@ -20,6 +21,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void Player1GamePieceBuilderTestSetPieceCoordinatesMethod()
         {
             var builder = CreateBuilder();
@@ -35,6 +37,7 @@
 
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void Player1GamePieceBuilderTestCreatePieceAndGetPieceMethod()
         {
             var builder = CreateBuilder();

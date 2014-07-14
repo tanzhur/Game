@@ -19,21 +19,6 @@ namespace UnitTestsKingSurvival
         }
 
         [TestMethod]
-        [TestCategory("ExpectionExceptions")]
-        [ExpectedException(typeof(ArgumentException), "Coordinates value must be between [0-7]")]
-        public void NegativeCoordinates(){
-            testCoordinate = new Coordinates(-5, 6);
-        }
-
-        [TestMethod]
-        [TestCategory("ExpectionExceptions")]
-        [ExpectedException(typeof(ArgumentException), "Coordinates value must be between [0-7]")]
-        public void CoordinatesOverEight()
-        {
-            testCoordinate = new Coordinates(5, 11);
-        }
-
-        [TestMethod]
         [TestCategory("FunctionalityTests")]
         public void CoordinatesEqualsTestWhenTrue()
         {

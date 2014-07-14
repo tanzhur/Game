@@ -9,6 +9,7 @@
     public class PlayersAllGamePiecesCreatorTests
     {
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void PlayersAllGamePiecesCreatorTestCreateGamePieces()
         {
             var creator = new PlayersAllGamePiecesCreator();

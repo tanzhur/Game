@@ -8,6 +8,7 @@
     public class PlayerGamePieceDirectorTests
     {
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void PlayerGamePieceDirectorInitializationWithValidBuilder()
         {
             var builder = CreateBuilder();
@@ -21,6 +22,7 @@
         }
 
         [TestMethod]
+        [TestCategory("ExpectiongException")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PlayerGamePieceDirectorInitializationWithNullValueInConstructor()
         {

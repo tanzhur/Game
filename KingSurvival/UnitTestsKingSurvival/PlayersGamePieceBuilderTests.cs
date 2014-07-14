@@ -8,6 +8,7 @@
     public class PlayersGamePieceBuilderTests
     {
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void TestPlayersGamePieceBuilderInitializationTestingWithRealFactory()
         {
             var factory = new PawnsAndKingsFactory();
@@ -19,6 +20,7 @@
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestPlayersGamePieceBuilderInitializationTestingWithNullArgument()
         {

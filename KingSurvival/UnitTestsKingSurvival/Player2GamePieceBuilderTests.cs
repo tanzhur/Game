@@ -9,6 +9,7 @@ namespace UnitTestsKingSurvival
     public class Player2GamePieceBuilderTests
     {
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void Player2GamePieceBuilderTestCreatePieceMethod()
         {
             var builder = CreateBuilder();
@@ -20,6 +21,7 @@ namespace UnitTestsKingSurvival
         }
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void Player2GamePieceBuilderTestSetPieceCoordinatesMethod()
         {
             var builder = CreateBuilder();
@@ -35,6 +37,7 @@ namespace UnitTestsKingSurvival
 
 
         [TestMethod]
+        [TestCategory("InitializationTests")]
         public void Player2GamePieceBuilderTestCreatePieceAndGetPieceMethod()
         {
             var builder = CreateBuilder();
