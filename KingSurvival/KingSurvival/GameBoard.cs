@@ -30,7 +30,7 @@
 
         private static GameBoard instance;
 
-        private GameBoard()
+        public GameBoard()
         {
             this.currentGameFieldObjects = new char[,] {    
             {' ',' ',' ',' ','0',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' ',' '},
