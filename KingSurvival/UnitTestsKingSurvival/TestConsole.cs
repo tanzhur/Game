@@ -17,7 +17,6 @@ namespace UnitTestsKingSurvival
         /// </summary>
         public TestConsole()
         {
-
         }
 
         /// <summary>
@@ -37,7 +36,6 @@ namespace UnitTestsKingSurvival
         /// </summary>
         private void RedirectStandartInput()
         {
-            // Redirect standard Console input.
             Console.SetIn(simulatedUserRead);
         }
 
