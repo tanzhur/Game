@@ -32,7 +32,6 @@
             this.gameBoard = GameBoard.Instance;
 
             this.pieceMover = new LogicPieceMover();
-            // TODO: Enumeration for player logic - get rid of 0 & 1
             this.playerOneMoveLogic = new LogicPlayerPieceMover(0);
             this.playerTwoMoveLogic = new LogicPlayerPieceMover(1);
             this.initialGameBoardCoordinates = new Coordinates(0, 0);
@@ -52,6 +51,7 @@
                 {
                     break;
                 }
+                this.kingMoves++;
                 PlayerTurn(this.playerTwoMoveLogic, GameConstants.player1Turn);
             }
 
@@ -100,7 +100,6 @@
             this.CheckGameState();
         }
 
-        // TODO: Implement this - copy&paste from original
         private void CheckGameState()
         {
             this.gameIsRunning = false;
@@ -185,10 +184,19 @@
             this.renderer.Render(this.gameBoard, this.initialGameBoardCoordinates);
         }
 
-        // TODO: Implement this as well
         private void ShowGameOutcome()
         {
-            throw new System.NotImplementedException();
+            string message = string.Empty;
+
+            if (this.kingIsStuck)
+            {
+                message = "King loses.";
+            }
+            else
+            {
+                message = string.Format("King wins in {0} turns.", this.kingMoves);
+            }
+            ShowMessageBellowGameBoard(message, GameConstants.MessageToPlayerOffset);
         }
         #endregion
         #endregion

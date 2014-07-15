@@ -8,7 +8,7 @@
     {
         private readonly int player;
 
-        public LogicPlayerPieceMover(int player) //TODO: fix this fucker to be enum
+        public LogicPlayerPieceMover(int player)
         {
             this.player = player;
         }
