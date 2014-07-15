@@ -29,6 +29,7 @@
             this.gameBoard = GameBoard.Instance;
 
             this.pieceMover = new LogicPieceMover();
+            // TODO: Enumeration for player logic - get rid of 0 & 1
             this.playerOneMoveLogic = new LogicPlayerPieceMover(0);
             this.playerTwoMoveLogic = new LogicPlayerPieceMover(1);
             this.initialGameBoardCoordinates = new Coordinates(0, 0);
@@ -93,6 +94,7 @@
 
         private void CheckGameState()
         {
+            // TODO: Implement this - copy&paste from original
             throw new System.NotImplementedException();
         }
 
@@ -145,6 +147,7 @@
 
         private void ShowGameOutcome()
         {
+            // TODO: Implement this as well
             throw new System.NotImplementedException();
         }
     }
