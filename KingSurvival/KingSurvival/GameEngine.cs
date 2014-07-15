@@ -5,6 +5,7 @@
 
     public class GameEngine
     {
+        #region Fields
         private readonly IRenderer renderer;
         private readonly IController controller;
 
@@ -19,7 +20,9 @@
         private bool gameIsRunning;
         private bool kingIsStuck;
         private int kingMoves;
+        #endregion
 
+        #region Constructors & Initializers
         public GameEngine(IRenderer renderer, IController controller)
         {
             this.renderer = renderer;
@@ -36,9 +39,11 @@
 
             this.gameIsRunning = true;
         }
+        #endregion
 
-
-        internal void StartGame()
+        #region Methods
+        #region Public Methods
+        public void StartGame()
         {
             while (this.gameIsRunning)
             {
@@ -53,6 +58,9 @@
             this.ShowGameOutcome();
         }
 
+        #endregion
+
+        #region Private Methods
         private void PlayerTurn(LogicPlayerPieceMover playerLogic, string messageToPlayer)
         {
             this.pieceMover.PieceMoverStrategy = playerLogic;
@@ -92,10 +100,42 @@
             this.CheckGameState();
         }
 
+        // TODO: Implement this - copy&paste from original
         private void CheckGameState()
         {
-            // TODO: Implement this - copy&paste from original
-            throw new System.NotImplementedException();
+            this.gameIsRunning = false;
+            kingIsStuck = true;
+            foreach (var piece in allPieces[0])
+            {
+                // check king win
+                if (piece.Coordinates.Y == 0)
+                {
+                    this.kingIsStuck = false;
+                    return;
+                }
+                // check player1(El King Magnifico) pieces if movable
+                if (this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.DownLeft)) ||
+                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.DownRight)) ||
+                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.UpLeft)) ||
+                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.UpRight)))
+                {
+                    this.kingIsStuck = false;
+                }
+            }
+            if (this.kingIsStuck)
+            {
+                return;
+            }
+            // check player2 pieces if movable
+            foreach (var piece in allPieces[1])
+            {
+                if (this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.DownLeft)) ||
+                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.DownRight)))
+                {
+                    this.gameIsRunning = true;
+                    return;
+                }
+            }
         }
 
         private void ShowIllegalMove()
@@ -106,10 +146,10 @@
 
         private bool IsPossibleMove(IPiece pieceToMove, ICoordinates newPieceCoordinates)
         {
-            if (newPieceCoordinates.X<0||
-                newPieceCoordinates.X>=this.gameBoard.PlayfieldSize||
-                newPieceCoordinates.Y<0 ||
-                newPieceCoordinates.Y>= this.gameBoard.PlayfieldSize)
+            if (newPieceCoordinates.X < 0 ||
+                newPieceCoordinates.X >= this.gameBoard.PlayfieldSize ||
+                newPieceCoordinates.Y < 0 ||
+                newPieceCoordinates.Y >= this.gameBoard.PlayfieldSize)
             {
                 return false;
             }
@@ -118,7 +158,7 @@
             {
                 foreach (var piece in list)
                 {
-                    if (pieceToMove==piece)
+                    if (pieceToMove == piece)
                     {
                         continue;
                     }
@@ -145,10 +185,12 @@
             this.renderer.Render(this.gameBoard, this.initialGameBoardCoordinates);
         }
 
+        // TODO: Implement this as well
         private void ShowGameOutcome()
         {
-            // TODO: Implement this as well
             throw new System.NotImplementedException();
         }
+        #endregion
+        #endregion
     }
 }
