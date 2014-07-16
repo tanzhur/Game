@@ -88,5 +88,13 @@
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        [TestCategory("FunctionalityTests")]
+        public void AssertNoExceptionIsThrownInNotifyMethod()
+        {
+            pieceKing.Coordinates = coords;
+            board.Notify(pieceKing, new Coordinates(5, 5));
+        }
     }
 }
