@@ -6,6 +6,7 @@
     public abstract class PlayersGamePieceBuilder 
     {
         protected readonly IGamePieceFactory Factory;
+        private IPiece piece;
 
         public PlayersGamePieceBuilder(IGamePieceFactory factory)
         {
@@ -13,7 +14,20 @@
             this.Factory = factory;
         }
 
-        protected IPiece piece;
+        protected IPiece Piece
+        {
+            get
+            {
+                return this.piece;
+            }
+
+            set
+            {
+                Validator.CheckValueIsNull(value, "Piece");
+
+                this.piece = value;
+            }
+        }
 
         public abstract void CreatePiece();
 

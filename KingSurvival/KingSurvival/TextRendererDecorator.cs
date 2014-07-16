@@ -9,14 +9,14 @@
 
         public override void RenderText(string text, int offsetX, int offsetY)
         {
-            char[,] textAsMatrix = new char[1,text.Length];
+            char[,] textAsMatrix = new char[1, text.Length];
 
             for (int i = 0; i < text.Length; i++)
-			{
+            {
                 textAsMatrix[0, i] = text[i];
-			}
+            }
 
-            base.Render(textAsMatrix, offsetX, offsetY);
+            this.Render(textAsMatrix, offsetX, offsetY);
         }
     }
 }

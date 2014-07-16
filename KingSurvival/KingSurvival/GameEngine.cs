@@ -39,10 +39,9 @@
             this.playerTwoMoveLogic = new LogicPlayer2PieceMover();
 
             this.initialGameBoardCoordinates = new Coordinates(0, 0);
-            this.initialMessagesCoordinates = new Coordinates(this.initialGameBoardCoordinates.X,
-                                                              this.initialGameBoardCoordinates.Y + 
-                                                              this.gameBoard.Height +
-                                                              GameConstants.MessageToPlayerOffset);
+            this.initialMessagesCoordinates = new Coordinates(
+                                              this.initialGameBoardCoordinates.X,
+                                              this.initialGameBoardCoordinates.Y + this.gameBoard.Height + GameConstants.MessageToPlayerOffset);
 
             this.gameIsRunning = true;
             this.kingCanMove = true;
@@ -55,14 +54,14 @@
 
             while (this.gameIsRunning)
             {
-                PlayerTurn(this.playerOneMoveLogic, GameConstants.Player1Turn);
+                this.PlayerTurn(this.playerOneMoveLogic, GameConstants.Player1Turn);
 
                 if (!this.gameIsRunning)
                 {
                     break;
                 }
 
-                PlayerTurn(this.playerTwoMoveLogic, GameConstants.Player2Turn);
+                this.PlayerTurn(this.playerTwoMoveLogic, GameConstants.Player2Turn);
             }
 
             this.ShowGameOutcome();
@@ -130,14 +129,13 @@
         private void CheckGameState()
         {
             // if king reached top or pawns can not move - game over king wins
-            if (ArePiecesOnTopOfBoard(this.allPieces[0]) || ArePiecesStuck(this.allPieces[1]))
+            if (this.ArePiecesOnTopOfBoard(this.allPieces[0]) || this.ArePiecesStuck(this.allPieces[1]))
             {
                 this.gameIsRunning = false;
             }
-
-            // if king is stuck - game over
-            else if (ArePiecesStuck(this.allPieces[0]))
+            else if (this.ArePiecesStuck(this.allPieces[0]))
             {
+                // if king is stuck - game over
                 this.kingCanMove = false;
                 this.gameIsRunning = false;
             }
@@ -225,11 +223,11 @@
         {
             if (this.kingCanMove)
             {
-                ShowMessageBellowGameBoard(string.Format(GameConstants.KingWinsInXTurns, this.kingMoves));
+                this.ShowMessageBellowGameBoard(string.Format(GameConstants.KingWinsInXTurns, this.kingMoves));
             }
             else
             {
-                ShowMessageBellowGameBoard(GameConstants.KingLooses);
+                this.ShowMessageBellowGameBoard(GameConstants.KingLooses);
             }
 
             this.controller.PressAnyKey();

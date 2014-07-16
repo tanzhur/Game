@@ -6,45 +6,45 @@
 
     public class GameBoard : IGameBoard, IRenderable, IGamePieceObserver
     {
-        private readonly char[,] OriginalGameFieldObjects = 
-        {    
-            {' ',' ',' ',' ','0',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' ',' '},
-            {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '},
-            {'0',' ','|',' ','+',' ','-',' ','+',' ','-',' ','+',' ','–',' ','+',' ','-',' ','|'},
-            {'1',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-            {'2',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-            {'3',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-            {'4',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-            {'5',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-            {'6',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-            {'7',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-            {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '}
-        };
-
         private const int TotalPlayfieldSize = 8;
         private const int TopBoardOffset = 2;
         private const int LeftBoardOffset = 4;
         private const int DisplayBoardPlaceSize = 2;
 
-        private char[,] currentGameFieldObjects;
-
         private static GameBoard instance;
+
+        private readonly char[,] originalGameFieldObjects = 
+        {    
+            { ' ', ' ', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ' },
+            { ' ', ' ', ' ', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', ' ' },
+            { '0', ' ', '|', ' ', '+', ' ', '-', ' ', '+', ' ', '-', ' ', '+', ' ', '–', ' ', '+', ' ', '-', ' ', '|' },
+            { '1', ' ', '|', ' ', '-', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '|' },
+            { '2', ' ', '|', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '-', ' ', '|' },
+            { '3', ' ', '|', ' ', '-', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '|' },
+            { '4', ' ', '|', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '-', ' ', '|' },
+            { '5', ' ', '|', ' ', '-', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '|' },
+            { '6', ' ', '|', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '-', ' ', '|' },
+            { '7', ' ', '|', ' ', '-', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '|' },
+            { ' ', ' ', ' ', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', ' ' }
+        };
+
+        private char[,] currentGameFieldObjects;
 
         public GameBoard()
         {
             this.currentGameFieldObjects = new char[,] 
             {    
-                {' ',' ',' ',' ','0',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' ',' '},
-                {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '},
-                {'0',' ','|',' ','A',' ','-',' ','B',' ','-',' ','C',' ','–',' ','D',' ','-',' ','|'},
-                {'1',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-                {'2',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-                {'3',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-                {'4',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-                {'5',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-                {'6',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-                {'7',' ','|',' ','-',' ','+',' ','–',' ','K',' ','–',' ','+',' ','–',' ','+',' ','|'},
-                {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '}
+                { ' ', ' ', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ' },
+                { ' ', ' ', ' ', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', ' ' },
+                { '0', ' ', '|', ' ', 'A', ' ', '-', ' ', 'B', ' ', '-', ' ', 'C', ' ', '–', ' ', 'D', ' ', '-', ' ', '|' },
+                { '1', ' ', '|', ' ', '-', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '|' },
+                { '2', ' ', '|', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '-', ' ', '|' },
+                { '3', ' ', '|', ' ', '-', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '|' },
+                { '4', ' ', '|', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '-', ' ', '|' },
+                { '5', ' ', '|', ' ', '-', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '|' },
+                { '6', ' ', '|', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '-', ' ', '|' },
+                { '7', ' ', '|', ' ', '-', ' ', '+', ' ', '–', ' ', 'K', ' ', '–', ' ', '+', ' ', '–', ' ', '+', ' ', '|' },
+                { ' ', ' ', ' ', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', ' ' }
             };
         }
 
@@ -65,7 +65,7 @@
         {
             get
             {
-                return this.OriginalGameFieldObjects.GetLength(1);
+                return this.originalGameFieldObjects.GetLength(1);
             }
         }
 
@@ -73,7 +73,7 @@
         {
             get
             {
-                return this.OriginalGameFieldObjects.GetLength(0);
+                return this.originalGameFieldObjects.GetLength(0);
             }
         }
 
@@ -83,20 +83,6 @@
             {
                 return TotalPlayfieldSize;
             }
-        }
-
-        public void Notify(IPiece piece, ICoordinates newPosition)
-        {
-            int oldDisplayPositionRow = TopBoardOffset + piece.Coordinates.Y;
-            int oldDisplayPositionCol = LeftBoardOffset + (DisplayBoardPlaceSize * piece.Coordinates.X);
-
-            this.currentGameFieldObjects[oldDisplayPositionRow, oldDisplayPositionCol]
-                = this.OriginalGameFieldObjects[oldDisplayPositionRow, oldDisplayPositionCol];
-
-            int newDisplayPositionRow = TopBoardOffset + newPosition.Y;
-            int newDisplayPositionCol = LeftBoardOffset + (DisplayBoardPlaceSize * newPosition.X);
-
-            this.currentGameFieldObjects[newDisplayPositionRow, newDisplayPositionCol] = piece.ID;
         }
 
         public char[,] Image
@@ -115,6 +101,20 @@
 
                 return matrixToReturn;
             }
+        }
+
+        public void Notify(IPiece piece, ICoordinates newPosition)
+        {
+            int oldDisplayPositionRow = TopBoardOffset + piece.Coordinates.Y;
+            int oldDisplayPositionCol = LeftBoardOffset + (DisplayBoardPlaceSize * piece.Coordinates.X);
+
+            this.currentGameFieldObjects[oldDisplayPositionRow, oldDisplayPositionCol]
+                = this.originalGameFieldObjects[oldDisplayPositionRow, oldDisplayPositionCol];
+
+            int newDisplayPositionRow = TopBoardOffset + newPosition.Y;
+            int newDisplayPositionCol = LeftBoardOffset + (DisplayBoardPlaceSize * newPosition.X);
+
+            this.currentGameFieldObjects[newDisplayPositionRow, newDisplayPositionCol] = piece.ID;
         }
     }
 }

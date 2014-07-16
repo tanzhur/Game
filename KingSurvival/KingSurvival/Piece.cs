@@ -11,14 +11,7 @@
         private char id;
         private ICoordinates coordinates;
 
-        // needed by observer patern (each figure holds a list of 
-        // observers that it needs to notify everytime it moves)
-        protected readonly IList<IGamePieceObserver> observers; 
-
-        public Piece()
-        {
-            this.observers = new List<IGamePieceObserver>();
-        }
+        public event PieceMovedDelegate Moved;
 
         public char ID
         {
@@ -54,14 +47,12 @@
 
         public void Move(ICoordinates coordinates) 
         {
-            if (Moved != null)
+            if (this.Moved != null)
             {
-                Moved(this, coordinates);
+                this.Moved(this, coordinates);
             }
 
             this.Coordinates = coordinates;
         }
-
-        public event PieceMovedDelegate Moved;
     }
 }

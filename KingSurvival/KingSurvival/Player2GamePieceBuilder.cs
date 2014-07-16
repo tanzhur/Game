@@ -39,30 +39,31 @@
 
         public override void CreatePiece()
         {
-            this.piece = this.Factory.CreatePlayer2Piece();
+            this.Piece = this.Factory.CreatePlayer2Piece();
         }
 
         public override void SetPieceID()
         {
-            this.piece.ID = this.pieceID[this.pieceIndex];
+            this.Piece.ID = this.pieceID[this.pieceIndex];
         }
 
         public override void SetPieceCoordinates()
         {
-            this.piece.Coordinates = new Coordinates(this.startPositionsX[this.pieceIndex],
-                                                     this.startPositionsY[this.pieceIndex]);
+            this.Piece.Coordinates = new Coordinates(
+                                     this.startPositionsX[this.pieceIndex],
+                                     this.startPositionsY[this.pieceIndex]);
         }
 
         public override IPiece GetPiece()
         {
             // getting ready for the next piece only after we take this one
             this.pieceIndex++;
-            if (this.pieceIndex >= startPositionsX.Length)
+            if (this.pieceIndex >= this.startPositionsX.Length)
             {
                 this.pieceIndex = 0;
             }
 
-            return this.piece;
+            return this.Piece;
         }
     }
 }

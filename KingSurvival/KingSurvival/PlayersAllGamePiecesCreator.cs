@@ -4,7 +4,7 @@
 
     using Interfaces;
 
-    //facade design pattern
+    // facade design pattern
     public class PlayersAllGamePiecesCreator 
     {
         public PlayersAllGamePiecesCreator()
