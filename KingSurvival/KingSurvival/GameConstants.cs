@@ -24,11 +24,11 @@
 
         public const int MessageShowTimeMilliseconds = 2000;
 
-        public const int MessageToPlayerOffset = 3;
-
+        public const int MessageToPlayerOffset = 2;
         public const string IllegalMove = "Illegal move!";
-        public const string player1Turn = "King's turn: ";
-        public const string player2Turn = "Pawns' turn: ";
+        public const string Player1Turn = "King's turn: ";
+        public const string Player2Turn = "Pawns' turn: ";
+        public const string BlankMessage = "                                ";
 
         public const string CommandMoveUpRight = "UR";
         public const string CommandMoveUpLeft = "UL";

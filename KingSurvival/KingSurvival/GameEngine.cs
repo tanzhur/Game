@@ -1,6 +1,8 @@
 ﻿namespace KingSurvival
 {
     using System.Collections.Generic;
+
+    using Enums;
     using Interfaces;
 
     public class GameEngine
@@ -9,8 +11,10 @@
         private readonly IController controller;
 
         private readonly IList<IList<IPiece>> allPieces;
+
         private readonly IGameBoard gameBoard;
         private readonly ICoordinates initialGameBoardCoordinates;
+        private readonly ICoordinates initialMessagesCoordinates;
 
         private readonly LogicPieceMover pieceMover;
         private readonly LogicPlayerPieceMover playerOneMoveLogic;
@@ -32,11 +36,36 @@
             this.playerOneMoveLogic = new LogicPlayerPieceMover(0);
             this.playerTwoMoveLogic = new LogicPlayerPieceMover(1);
             this.initialGameBoardCoordinates = new Coordinates(0, 0);
+            this.initialMessagesCoordinates = new Coordinates(this.initialGameBoardCoordinates.X,
+                                                              this.initialGameBoardCoordinates.Y + 
+                                                              this.gameBoard.Height +
+                                                              GameConstants.MessageToPlayerOffset);
 
             this.gameIsRunning = true;
         }
 
         public void StartGame()
+        {
+            this.AttachEventsToAllThePieces();
+
+            while (this.gameIsRunning)
+            {
+                PlayerTurn(this.playerOneMoveLogic, GameConstants.Player1Turn);
+
+                if (!this.gameIsRunning)
+                {
+                    break;
+                }
+
+                this.kingMoves++;
+
+                PlayerTurn(this.playerTwoMoveLogic, GameConstants.Player2Turn);
+            }
+
+            this.ShowGameOutcome();
+        }
+
+        private void AttachEventsToAllThePieces()
         {
             foreach (var list in this.allPieces)
             {
@@ -45,19 +74,6 @@
                     piece.Moved += this.gameBoard.Notify;
                 }
             }
-
-            while (this.gameIsRunning)
-            {
-                PlayerTurn(this.playerOneMoveLogic, GameConstants.player1Turn);
-                if (!this.gameIsRunning)
-                {
-                    break;
-                }
-                this.kingMoves++;
-                PlayerTurn(this.playerTwoMoveLogic, GameConstants.player1Turn);
-            }
-
-            this.ShowGameOutcome();
         }
 
         private void PlayerTurn(LogicPlayerPieceMover playerLogic, string messageToPlayer)
@@ -67,7 +83,7 @@
             while (true)
             {
                 this.ShowGameBoard();
-                this.ShowMessageBellowGameBoard(messageToPlayer, GameConstants.MessageToPlayerOffset);
+                this.ShowMessageBellowGameBoard(messageToPlayer);
 
                 var command = this.controller.GetCommand();
 
@@ -112,10 +128,10 @@
                     return;
                 }
                 // check player1(El King Magnifico) pieces if movable
-                if (this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.DownLeft)) ||
-                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.DownRight)) ||
-                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.UpLeft)) ||
-                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.UpRight)))
+                if (this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.DownLeft)) ||
+                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.DownRight)) ||
+                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.UpLeft)) ||
+                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.UpRight)))
                 {
                     this.kingIsStuck = false;
                 }
@@ -127,8 +143,8 @@
             // check player2 pieces if movable
             foreach (var piece in allPieces[1])
             {
-                if (this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.DownLeft)) ||
-                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Enums.Moves.DownRight)))
+                if (this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.DownLeft)) ||
+                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.DownRight)))
                 {
                     this.gameIsRunning = true;
                     return;
@@ -138,7 +154,7 @@
 
         private void ShowIllegalMove()
         {
-            this.ShowMessageBellowGameBoard(GameConstants.IllegalMove, GameConstants.MessageToPlayerOffset);
+            this.ShowMessageBellowGameBoard(GameConstants.IllegalMove);
             this.controller.PressAnyKey();
         }
 
@@ -171,11 +187,11 @@
             return true;
         }
 
-        private void ShowMessageBellowGameBoard(string messageToPlayer, int linesBellowBoard)
+        private void ShowMessageBellowGameBoard(string messageToPlayer)
         {
-            this.renderer.RenderText(messageToPlayer,
-                new Coordinates(this.initialGameBoardCoordinates.X,
-                    this.initialGameBoardCoordinates.Y + this.gameBoard.Height + linesBellowBoard));
+            this.renderer.RenderText(GameConstants.BlankMessage, this.initialMessagesCoordinates);
+
+            this.renderer.RenderText(messageToPlayer, this.initialMessagesCoordinates);
         }
 
         private void ShowGameBoard()
@@ -195,7 +211,7 @@
             {
                 message = string.Format("King wins in {0} turns.", this.kingMoves);
             }
-            ShowMessageBellowGameBoard(message, GameConstants.MessageToPlayerOffset);
+            ShowMessageBellowGameBoard(message);
         }
     }
 }
