@@ -8,7 +8,7 @@
 
         ICoordinates Coordinates { get; set; }
 
-        bool IsValidCommand(ICommand command);
+        bool IsValidMove(Moves move);
 
         ICoordinates GetNewCoordinates(Moves move);
 

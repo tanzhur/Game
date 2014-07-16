@@ -1,25 +1,22 @@
 ﻿namespace KingSurvival
 {
+    using System.Linq;
+
     using Enums;
     using Interfaces;
 
     public class PiecePawn : Piece, IPiece
     {
-        public override bool IsValidCommand(ICommand command)
-        {
-            if (this.ID != command.TargetID)
-            {
-                return false;
-            }
+        private Moves[] allowedMoves;
 
-            if (command.Move == Moves.DownLeft || command.Move == Moves.DownRight)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public PiecePawn()
+        {
+            this.allowedMoves = new Moves[] { Moves.DownLeft, Moves.DownRight };
+        }
+
+        public override bool IsValidMove(Moves move)
+        {
+            return this.allowedMoves.Contains(move);
         }
 
         public override ICoordinates GetNewCoordinates(Moves move)

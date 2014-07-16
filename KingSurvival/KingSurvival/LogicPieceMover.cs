@@ -4,13 +4,14 @@
 
     using Interfaces;
 
-    public class LogicPieceMover // strategy design pattern client
+    // strategy design pattern client
+    public class LogicPieceMover
     {
-        private LogicPlayerPieceMover pieceMoverStrategy;
+        private LogicPlayerPieceMoverBase pieceMoverStrategy;
 
         public LogicPieceMover() { }
 
-        public LogicPlayerPieceMover PieceMoverStrategy
+        public LogicPlayerPieceMoverBase PieceMoverStrategy
         {
             private get
             {
@@ -18,14 +19,14 @@
             }
             set
             {
-                // CHECK DATA!
+                Validator.CheckValueIsNull(value, "Piece mover strategy can not be null or empty");
                 this.pieceMoverStrategy = value;
             }
         }
 
-        public IPiece FindPieceToMove(ICommand command, IList<IList<IPiece>> allPieces)
+        public IPiece FindPieceToMove(ICommand command, IList<IList<IPiece>> allPieces, out bool addScore)
         {
-            return this.pieceMoverStrategy.FindPieceToMove(command, allPieces);
+            return this.pieceMoverStrategy.FindPieceToMove(command, allPieces, out addScore);
         }
     }
 }

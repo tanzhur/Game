@@ -44,7 +44,7 @@
                 this.y = value;
             }
         }
-
+        
         public bool Equals(ICoordinates other)
         {
             bool isSame = this.X == other.X && this.Y == other.Y;

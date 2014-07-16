@@ -4,6 +4,7 @@
 
     using Enums;
     using Interfaces;
+    using System;
 
     public class GameEngine
     {
@@ -17,11 +18,11 @@
         private readonly ICoordinates initialMessagesCoordinates;
 
         private readonly LogicPieceMover pieceMover;
-        private readonly LogicPlayerPieceMover playerOneMoveLogic;
-        private readonly LogicPlayerPieceMover playerTwoMoveLogic;
+        private readonly LogicPlayerPieceMoverBase playerOneMoveLogic;
+        private readonly LogicPlayerPieceMoverBase playerTwoMoveLogic;
 
         private bool gameIsRunning;
-        private bool kingIsStuck;
+        private bool kingCanMove;
         private int kingMoves;
 
         public GameEngine(IRenderer renderer, IController controller)
@@ -33,8 +34,8 @@
             this.gameBoard = GameBoard.Instance;
 
             this.pieceMover = new LogicPieceMover();
-            this.playerOneMoveLogic = new LogicPlayerPieceMover(0);
-            this.playerTwoMoveLogic = new LogicPlayerPieceMover(1);
+            this.playerOneMoveLogic = new LogicPlayer1PieceMover();
+            this.playerTwoMoveLogic = new LogicPlayer2PieceMover();
             this.initialGameBoardCoordinates = new Coordinates(0, 0);
             this.initialMessagesCoordinates = new Coordinates(this.initialGameBoardCoordinates.X,
                                                               this.initialGameBoardCoordinates.Y + 
@@ -42,6 +43,8 @@
                                                               GameConstants.MessageToPlayerOffset);
 
             this.gameIsRunning = true;
+            this.kingCanMove = true;
+            this.kingMoves = 0;
         }
 
         public void StartGame()
@@ -56,8 +59,6 @@
                 {
                     break;
                 }
-
-                this.kingMoves++;
 
                 PlayerTurn(this.playerTwoMoveLogic, GameConstants.Player2Turn);
             }
@@ -76,7 +77,7 @@
             }
         }
 
-        private void PlayerTurn(LogicPlayerPieceMover playerLogic, string messageToPlayer)
+        private void PlayerTurn(LogicPlayerPieceMoverBase playerLogic, string messageToPlayer)
         {
             this.pieceMover.PieceMoverStrategy = playerLogic;
 
@@ -93,7 +94,9 @@
                     continue;
                 }
 
-                var pieceToMove = this.pieceMover.FindPieceToMove(command, this.allPieces);
+                var addKingMove = false;
+
+                var pieceToMove = this.pieceMover.FindPieceToMove(command, this.allPieces, out addKingMove);
 
                 if (pieceToMove == null)
                 {
@@ -110,52 +113,62 @@
                 }
 
                 pieceToMove.Move(newPieceCoordinates);
+
+                if (addKingMove)
+                {
+                    this.kingMoves++;
+                }
+
                 break;
             }
+
             this.CheckGameState();
         }
 
         private void CheckGameState()
         {
-            this.gameIsRunning = false;
-            kingIsStuck = true;
-            foreach (var piece in allPieces[0])
+            // if king reached top or pawns can not move - game over king wins
+            if (ArePiecesOnTopOfBoard(this.allPieces[0]) || ArePiecesStuck(this.allPieces[1]))
             {
-                // check king win
-                if (piece.Coordinates.Y == 0)
-                {
-                    this.kingIsStuck = false;
-                    return;
-                }
-                // check player1(El King Magnifico) pieces if movable
-                if (this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.DownLeft)) ||
-                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.DownRight)) ||
-                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.UpLeft)) ||
-                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.UpRight)))
-                {
-                    this.kingIsStuck = false;
-                }
+                this.gameIsRunning = false;
             }
-            if (this.kingIsStuck)
+            // if king is stuck - game over
+            else if (ArePiecesStuck(this.allPieces[0]))
             {
-                return;
-            }
-            // check player2 pieces if movable
-            foreach (var piece in allPieces[1])
-            {
-                if (this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.DownLeft)) ||
-                    this.IsPossibleMove(piece, piece.GetNewCoordinates(Moves.DownRight)))
-                {
-                    this.gameIsRunning = true;
-                    return;
-                }
+                this.kingCanMove = false;
+                this.gameIsRunning = false;
             }
         }
 
-        private void ShowIllegalMove()
+        private bool ArePiecesOnTopOfBoard(IList<IPiece> piecesToCheck)
         {
-            this.ShowMessageBellowGameBoard(GameConstants.IllegalMove);
-            this.controller.PressAnyKey();
+            foreach (var piece in piecesToCheck)
+            {
+                if (piece.Coordinates.Y != 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool ArePiecesStuck(IList<IPiece> piecesToCheck)
+        {
+            foreach (var piece in piecesToCheck)
+            {
+                // checks for all the moves in the enum, if the piece can execute the move is it possible
+                foreach (Moves move in (Moves[])Enum.GetValues(typeof(Moves)))
+                {
+                    if (piece.IsValidMove(move) && this.IsPossibleMove(piece, piece.GetNewCoordinates(move)))
+                    {
+                        // at least one piece can move - returning
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private bool IsPossibleMove(IPiece pieceToMove, ICoordinates newPieceCoordinates)
@@ -177,7 +190,7 @@
                         continue;
                     }
 
-                    if (pieceToMove.Coordinates.Equals(piece.Coordinates))
+                    if (newPieceCoordinates.Equals(piece.Coordinates))
                     {
                         return false;
                     }
@@ -185,6 +198,12 @@
             }
 
             return true;
+        }
+
+        private void ShowIllegalMove()
+        {
+            this.ShowMessageBellowGameBoard(GameConstants.IllegalMove);
+            this.controller.PressAnyKey();
         }
 
         private void ShowMessageBellowGameBoard(string messageToPlayer)
@@ -201,17 +220,16 @@
 
         private void ShowGameOutcome()
         {
-            string message = string.Empty;
-
-            if (this.kingIsStuck)
+            if (this.kingCanMove)
             {
-                message = "King loses.";
+                ShowMessageBellowGameBoard(string.Format(GameConstants.KingWinsInXTurns, this.kingMoves));
             }
             else
             {
-                message = string.Format("King wins in {0} turns.", this.kingMoves);
+                ShowMessageBellowGameBoard(GameConstants.KingLooses);
             }
-            ShowMessageBellowGameBoard(message);
+
+            this.controller.PressAnyKey();
         }
     }
 }

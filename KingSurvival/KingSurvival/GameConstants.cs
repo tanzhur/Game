@@ -30,6 +30,9 @@
         public const string Player2Turn = "Pawns' turn: ";
         public const string BlankMessage = "                                ";
 
+        public const string KingWinsInXTurns = "King wins in {0} turns.";
+        public const string KingLooses = "King loses.";
+
         public const string CommandMoveUpRight = "UR";
         public const string CommandMoveUpLeft = "UL";
         public const string CommandMoveDownRight = "DR";
