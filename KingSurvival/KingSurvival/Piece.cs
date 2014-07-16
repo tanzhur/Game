@@ -54,8 +54,6 @@
 
         public void Move(ICoordinates coordinates) 
         {
-            Validator.CheckValueIsNull(coordinates, "New piece coordinates");
-
             if (Moved != null)
             {
                 Moved(this, coordinates);

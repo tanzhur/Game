@@ -76,93 +76,38 @@
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPieceKingIsValidCommandWithValidCommandID()
+        public void TestPieceKingIsValidMoveWithValidMoveDownRight()
         {
-            pieceKing.ID = 'K';
-            Moves move = Moves.DownRight;
-            Command command = new Command('K', move);
-
-            bool result = pieceKing.IsValidCommand(command);
+            bool result = pieceKing.IsValidMove(Moves.DownRight);
 
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPieceKingIsValidCommandWithInValidCommandID()
+        public void TestPieceKingIsValidMoveWithValidMoveDownLeft()
         {
-            pieceKing.ID = 'K';
-            Moves move = Moves.DownRight;
-            Command command = new Command('A', move);
-
-            bool result = pieceKing.IsValidCommand(command);
-
-            Assert.IsTrue(!result);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceKingIsValidCommandWithValidCommandMoveDownLeft()
-        {
-            pieceKing.ID = 'K';
-            Moves move = Moves.DownLeft;
-            Command command = new Command('K', move);
-
-            bool result = pieceKing.IsValidCommand(command);
+            bool result = pieceKing.IsValidMove(Moves.DownLeft);
 
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPieceKingIsValidCommandWithValidCommandMoveDownRight()
+        public void TestPieceKingIsValidMoveWithValidMoveUpRight()
         {
-            pieceKing.ID = 'K';
-            Moves move = Moves.DownRight;
-            Command command = new Command('K', move);
-
-            bool result = pieceKing.IsValidCommand(command);
+            bool result = pieceKing.IsValidMove(Moves.UpRight);
 
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPieceKingIsValidCommandWithValidCommandMoveUpLeft()
+        public void TestPieceKingIsValidMoveWithValidMoveUpLeft()
         {
-            pieceKing.ID = 'K';
-            Moves move = Moves.UpLeft;
-            Command command = new Command('K', move);
-
-            bool result = pieceKing.IsValidCommand(command);
+            bool result = pieceKing.IsValidMove(Moves.UpLeft);
 
             Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceKingIsValidCommandWithValidCommandMoveUpRight()
-        {
-            pieceKing.ID = 'K';
-            Moves move = Moves.UpRight;
-            Command command = new Command('K', move);
-
-            bool result = pieceKing.IsValidCommand(command);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceKingIsValidCommandWithInValidCommand()
-        {
-            pieceKing.ID = 'K';
-            Moves move = (Moves)5;
-            Command command = new Command('K', move);
-
-            bool result = pieceKing.IsValidCommand(command);
-
-            Assert.IsTrue(!result);
         }
 
         [TestMethod]

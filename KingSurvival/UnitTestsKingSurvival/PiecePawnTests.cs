@@ -52,67 +52,38 @@ namespace UnitTestsKingSurvival
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPiecePawnIsValidCommandWithValidCommandID()
+        public void TestPiecePawnIsValidMoveWithValidMoveDownRight()
         {
-            piecePawn.ID = pieceID;
-            Moves move = Moves.DownRight;
-            Command command = new Command(pieceID, move);
-
-            bool result = piecePawn.IsValidCommand(command);
+            bool result = piecePawn.IsValidMove(Moves.DownRight);
 
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPiecePawnIsValidCommandWithInValidCommandID()
+        public void TestPiecePawnIsValidMoveWithValidMoveDownLeft()
         {
-            piecePawn.ID = pieceID;
-            Moves move = Moves.DownRight;
-            Command command = new Command('K', move);
-
-            bool result = piecePawn.IsValidCommand(command);
-
-            Assert.IsTrue(!result);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPiecePawnIsValidCommandWithValidCommandMoveDownLeft()
-        {
-            piecePawn.ID = pieceID;
-            Moves move = Moves.DownLeft;
-            Command command = new Command(pieceID, move);
-
-            bool result = piecePawn.IsValidCommand(command);
+            bool result = piecePawn.IsValidMove(Moves.DownLeft);
 
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPiecePawnIsValidCommandWithValidCommandMoveDownRight()
+        public void TestPiecePawnIsInvalidMoveWithValidMoveUpLeft()
         {
-            piecePawn.ID = pieceID;
-            Moves move = Moves.DownRight;
-            Command command = new Command(pieceID, move);
+            bool result = piecePawn.IsValidMove(Moves.UpLeft);
 
-            bool result = piecePawn.IsValidCommand(command);
-
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPiecePawnIsValidCommandWithInValidCommand()
+        public void TestPiecePawnIsInvalidMoveWithValidMoveUpRight()
         {
-            piecePawn.ID = pieceID;
-            Moves move = (Moves)5;
-            Command command = new Command(pieceID, move);
+            bool result = piecePawn.IsValidMove(Moves.UpRight);
 
-            bool result = piecePawn.IsValidCommand(command);
-
-            Assert.IsTrue(!result);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
