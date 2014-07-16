@@ -69,30 +69,6 @@
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestGameBoardTryFindIDOnBoard()
-        {
-            pieceKing.ID = 'K';
-            pieceKing.Coordinates = coords;
-            pieceKing.SubscribeToGamePieceObserver(board);
-            board.Notify('K', new Coordinates(5,5));
-
-            Assert.IsTrue(TestRanThrough);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestGameBoardTryFindNonexistentID()
-        {
-            pieceKing.ID = 'P';
-            pieceKing.Coordinates = coords;
-            pieceKing.SubscribeToGamePieceObserver(board);
-            board.Notify('P', new Coordinates(5, 5));
-
-            Assert.IsTrue(TestRanThrough);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
         public void TestGameBoardInstance()
         {
             var matrix = GameBoard.Instance;

@@ -130,7 +130,7 @@ namespace UnitTestsKingSurvival
 
         [TestMethod]
         [TestCategory("ExpectingExceptions")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void TestPiecePawnMoveWithInValidNewCoordinates()
         {
             piecePawn.Coordinates = coords;

@@ -180,7 +180,7 @@
 
         [TestMethod]
         [TestCategory("ExpectingExceptions")]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void TestPieceKingMoveWithInValidNewCoordinates()
         {
             pieceKing.Coordinates = coords;

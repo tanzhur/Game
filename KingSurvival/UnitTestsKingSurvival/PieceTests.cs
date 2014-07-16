@@ -30,66 +30,6 @@
         }
 
         [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceSubscribeToGamePieceObserver()
-        {
-            piece.SubscribeToGamePieceObserver(gameBoard);
-            Assert.IsTrue(currentTestRan);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceSubscribeToGamePieceObserverWithANullArgument()
-        {
-            piece.SubscribeToGamePieceObserver(null);
-            Assert.IsTrue(currentTestRan);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceUnSubscribeFromGamePieceObserver()
-        {
-            piece.UnSubscribeFromGamePieceObserver(gameBoard);
-            Assert.IsTrue(currentTestRan);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceUnSubscribeFromGamePieceObserverThatAllreadyIsObserver()
-        {
-            piece.SubscribeToGamePieceObserver(gameBoard);
-            piece.UnSubscribeFromGamePieceObserver(gameBoard);
-            Assert.IsTrue(currentTestRan);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceUnSubscribeFromGamePieceObserverFromEmptyListOfObservers()
-        {
-            piece.UnSubscribeFromGamePieceObserver(null);
-            Assert.IsTrue(currentTestRan);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceNotifyObserversWithCurrentlyOneOrMoreObservers()
-        {
-            piece.SubscribeToGamePieceObserver(gameBoard);
-            piece.SubscribeToGamePieceObserver(gameBoard);
-            piece.SubscribeToGamePieceObserver(gameBoard);
-            piece.NotifyObservers();
-            Assert.IsTrue(currentTestRan);
-        }
-
-        [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void TestPieceNotifyObserversWithCurrentlyNoObservers()
-        {
-            piece.NotifyObservers();
-            Assert.IsTrue(currentTestRan);
-        }
-
-        [TestMethod]
         [TestCategory("ExpectingExceptions")]
         [ExpectedException(typeof(ArgumentException))]
         public void TestPieceInitializationAndIDSetWithIncorrectValueNumber()
