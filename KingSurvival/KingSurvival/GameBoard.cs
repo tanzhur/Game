@@ -84,22 +84,18 @@
             }
         }
 
-        public void Notify(char id, ICoordinates newPosition)
+        public void Notify(IPiece piece, ICoordinates newPosition)
         {
-            int oldRow;
-            int oldCol;
-            int newDisplayPositionRow;
-            int newDisplayPositionCol;
+            int oldDisplayPositionRow = TopBoardOffset + piece.Coordinates.Y;
+            int oldDisplayPositionCol = LeftBoardOffset + DisplayBoardPlaceSize * piece.Coordinates.X;
 
-            if (this.TryFindIDOnBoard(id, out oldRow, out oldCol))
-            {
-                this.currentGameFieldObjects[oldRow, oldCol] = this.OriginalGameFieldObjects[oldRow, oldCol];
+            this.currentGameFieldObjects[oldDisplayPositionRow, oldDisplayPositionCol]
+                = this.OriginalGameFieldObjects[oldDisplayPositionRow, oldDisplayPositionCol];
 
-                newDisplayPositionRow = TopBoardOffset + newPosition.Y;
-                newDisplayPositionCol = LeftBoardOffset + DisplayBoardPlaceSize * newPosition.X;
+            int newDisplayPositionRow = TopBoardOffset + newPosition.Y;
+            int newDisplayPositionCol = LeftBoardOffset + DisplayBoardPlaceSize * newPosition.X;
 
-                this.currentGameFieldObjects[newDisplayPositionRow, newDisplayPositionCol] = id;
-            }
+            this.currentGameFieldObjects[newDisplayPositionRow, newDisplayPositionCol] = piece.ID;
         }
 
         public char[,] Image
@@ -118,26 +114,6 @@
 
                 return matrixToReturn;
             }
-        }
-
-        private bool TryFindIDOnBoard(char id, out int oldRow, out int oldCol)
-        {
-            for (int row = 0; row < this.currentGameFieldObjects.GetLength(0); row++)
-            {
-                for (int col = 0; col < this.currentGameFieldObjects.GetLength(1); col++)
-                {
-                    if (currentGameFieldObjects[row, col] == id)
-                    {
-                        oldRow = row;
-                        oldCol = col;
-                        return true;
-                    }
-                }
-            }
-            oldRow = -1;
-            oldCol = -1;
-
-            return false;
         }
     }
 }

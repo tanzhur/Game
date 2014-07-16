@@ -44,12 +44,5 @@
 
             return null;
         }
-
-        public override void Move(ICoordinates coordinates)
-        {
-            this.Coordinates = new Coordinates(coordinates.X, coordinates.Y);
-
-            this.NotifyObservers();
-        }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IGamePieceObserver //observer from behaviour design pattern
     {
-        void Notify(char ID, ICoordinates newPosition);
+        void Notify(IPiece piece, ICoordinates newPosition);
     }
 }

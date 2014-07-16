@@ -58,6 +58,7 @@
     <Compile Include="PawnsAndKingsFactory.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PieceKing.cs" />
+    <Compile Include="PieceMovedDelegate.cs" />
     <Compile Include="PiecePawn.cs" />
     <Compile Include="Player1GamePieceBuilder.cs" />
     <Compile Include="Player2GamePieceBuilder.cs" />

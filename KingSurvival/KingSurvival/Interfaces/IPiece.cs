@@ -14,11 +14,6 @@
 
         void Move(ICoordinates newCoordinates);
 
-        // these 3 can be into a seperate interface (IObservableGamePiece)
-        void SubscribeToGamePieceObserver(IGamePieceObserver observer);
-
-        void UnSubscribeFromGamePieceObserver(IGamePieceObserver observer);
-
-        void NotifyObservers();
+        event PieceMovedDelegate Moved;
     }
 }

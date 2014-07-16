@@ -65,8 +65,6 @@ namespace KingSurvival
             var stackTrace = new StackTrace();
             methodName = stackTrace.GetFrame(2).GetMethod().Name;
             className = stackTrace.GetFrame(2).GetType().Name;
-        }
-
-       
+        }       
     }
 }

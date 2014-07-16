@@ -51,30 +51,16 @@
 
         public abstract ICoordinates GetNewCoordinates(Moves move);
 
-        public abstract void Move(ICoordinates coordinates); //have to call Notify Method Here on every move
-
-        public void SubscribeToGamePieceObserver(IGamePieceObserver observer)
+        public void Move(ICoordinates coordinates) 
         {
-            if (!this.observers.Contains(observer))
+            if (Moved != null)
             {
-                this.observers.Add(observer);
+                Moved(this, coordinates);
             }
+
+            this.Coordinates = coordinates;
         }
 
-        public void UnSubscribeFromGamePieceObserver(IGamePieceObserver observer)
-        {
-            if (this.observers.Contains(observer))
-            {
-                this.observers.Remove(observer);
-            }
-        }
-
-        public void NotifyObservers()
-        {
-            foreach (var observer in this.observers)
-            {
-                observer.Notify(this.ID, this.Coordinates);
-            }
-        }
+        public event PieceMovedDelegate Moved;
     }
 }

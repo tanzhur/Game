@@ -5,7 +5,6 @@
 
     public class GameEngine
     {
-        #region Fields
         private readonly IRenderer renderer;
         private readonly IController controller;
 
@@ -20,9 +19,7 @@
         private bool gameIsRunning;
         private bool kingIsStuck;
         private int kingMoves;
-        #endregion
 
-        #region Constructors & Initializers
         public GameEngine(IRenderer renderer, IController controller)
         {
             this.renderer = renderer;
@@ -38,12 +35,17 @@
 
             this.gameIsRunning = true;
         }
-        #endregion
 
-        #region Methods
-        #region Public Methods
         public void StartGame()
         {
+            foreach (var list in this.allPieces)
+            {
+                foreach (var piece in list)
+                {
+                    piece.Moved += this.gameBoard.Notify;
+                }
+            }
+
             while (this.gameIsRunning)
             {
                 PlayerTurn(this.playerOneMoveLogic, GameConstants.player1Turn);
@@ -58,9 +60,6 @@
             this.ShowGameOutcome();
         }
 
-        #endregion
-
-        #region Private Methods
         private void PlayerTurn(LogicPlayerPieceMover playerLogic, string messageToPlayer)
         {
             this.pieceMover.PieceMoverStrategy = playerLogic;
@@ -198,7 +197,5 @@
             }
             ShowMessageBellowGameBoard(message, GameConstants.MessageToPlayerOffset);
         }
-        #endregion
-        #endregion
     }
 }
