@@ -1,33 +1,17 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
-
-namespace KingSurvival
+﻿namespace KingSurvival
 {
     using System;
     public static class Validator
     {
-        public static void CheckValueIsNull(object value, string propertyName,
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
+        public static void CheckValueIsNull(object value, string propertyName)
         {
             if (value == null)
             {
-                try
-                {
-                    throw new ArgumentNullException(propertyName + " can not be null.");
-                }
-                catch (ArgumentNullException argumentNullException)
-                {
-                   Logger.LogException(argumentNullException, sourceFilePath, memberName, sourceLineNumber);
-                }
+                throw new ArgumentNullException(propertyName + " can not be null.");
             }
         }
 
-        public static void CheckStringNullOrEmpty(string value, string propertyName,
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
+        public static void CheckStringNullOrEmpty(string value, string propertyName)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -35,10 +19,7 @@ namespace KingSurvival
             }
         }
 
-        public static void CheckStringNullOrWhiteSpace(string value, string propertyName,
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
+        public static void CheckStringNullOrWhiteSpace(string value, string propertyName)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -46,25 +27,12 @@ namespace KingSurvival
             }
         }
 
-        public static void CheckCharIsNotLetter(char value, string propertyName,
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
+        public static void CheckCharIsNotLetter(char value, string propertyName)
         {
             if (!char.IsLetter(value))
             {
                 throw new ArgumentException(propertyName + " must be letter.");
             }
         }
-
-        private static void GetMethodClass(out String className, out String methodName,
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var stackTrace = new StackTrace();
-            methodName = stackTrace.GetFrame(2).GetMethod().Name;
-            className = stackTrace.GetFrame(2).GetType().Name;
-        }       
     }
 }
