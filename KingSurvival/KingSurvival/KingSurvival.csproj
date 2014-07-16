@@ -53,9 +53,9 @@
     <Compile Include="Interfaces\IPiece.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LogicPieceMover.cs" />
+    <Compile Include="LogicPlayer1PieceMover.cs" />
     <Compile Include="LogicPlayerPieceMoveBase.cs" />
     <Compile Include="LogicPlayer2PieceMover.cs" />
-    <Compile Include="LogicPlayer1PieceMover.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="PawnsAndKingsFactory.cs" />
     <Compile Include="Piece.cs" />
