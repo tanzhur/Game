@@ -6,7 +6,6 @@
     {
         public override void Render(char[,] objectToRender, int offsetX, int offsetY)
         {
-
             for (int row = 0; row < objectToRender.GetLength(0); row++)
             {
                 Console.SetCursorPosition(offsetX, offsetY + row);
@@ -25,7 +24,6 @@
         {
             Console.Clear();
         }
-
 
         private ConsoleColor PickColor(char sign)
         {

@@ -13,6 +13,7 @@
         {
             this.allowedMoves = new Moves[] { Moves.DownLeft, Moves.DownRight, Moves.UpLeft, Moves.UpRight };
         }
+
         public override bool IsValidMove(Moves move)
         {
             return this.allowedMoves.Contains(move);

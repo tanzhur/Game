@@ -13,7 +13,7 @@
             this.Factory = factory;
         }
 
-        protected IPiece Piece;
+        protected IPiece piece;
 
         public abstract void CreatePiece();
 

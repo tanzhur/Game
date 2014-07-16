@@ -47,6 +47,7 @@
                 this.coordinates = value;
             }
         }
+
         public abstract bool IsValidMove(Moves move);
 
         public abstract ICoordinates GetNewCoordinates(Moves move);

@@ -1,10 +1,10 @@
 ﻿namespace KingSurvival
 {
+    using System;
     using System.Collections.Generic;
 
     using Enums;
     using Interfaces;
-    using System;
 
     public class GameEngine
     {
@@ -31,11 +31,13 @@
             this.controller = controller;
 
             this.allPieces = new PlayersAllGamePiecesCreator().CreateGamePieces();
+
             this.gameBoard = GameBoard.Instance;
 
             this.pieceMover = new LogicPieceMover();
             this.playerOneMoveLogic = new LogicPlayer1PieceMover();
             this.playerTwoMoveLogic = new LogicPlayer2PieceMover();
+
             this.initialGameBoardCoordinates = new Coordinates(0, 0);
             this.initialMessagesCoordinates = new Coordinates(this.initialGameBoardCoordinates.X,
                                                               this.initialGameBoardCoordinates.Y + 
@@ -132,6 +134,7 @@
             {
                 this.gameIsRunning = false;
             }
+
             // if king is stuck - game over
             else if (ArePiecesStuck(this.allPieces[0]))
             {

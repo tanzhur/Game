@@ -1,6 +1,7 @@
 ﻿namespace KingSurvival.Interfaces
 {
-    public interface IGamePieceObserver //observer from behaviour design pattern
+    // observer from behaviour design pattern
+    public interface IGamePieceObserver
     {
         void Notify(IPiece piece, ICoordinates newPosition);
     }

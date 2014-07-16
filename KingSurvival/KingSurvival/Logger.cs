@@ -11,12 +11,14 @@ namespace KingSurvival
     public static class Logger
     {
         private const string OutputFile = "log.txt";
+
         public static void LogException(Exception exception, string source, string method, int line)
         {
             var result = string.Format("Time: {0}, Type: {1}, Class: {2}, Method: {3}, Line: {4}", DateTime.Now,
                       exception.GetType(), ConvertFilePathToFileName(source), method, line);
             Console.WriteLine(result);
             Log(result, exception.GetOriginalException());
+
             // Added for tests to catch exception otherwise doesn't throw it
             throw new ArgumentNullException(result);
         }

@@ -4,6 +4,8 @@
 
     public interface IPiece
     {
+        event PieceMovedDelegate Moved;
+
         char ID { get; set; }
 
         ICoordinates Coordinates { get; set; }
@@ -13,7 +15,5 @@
         ICoordinates GetNewCoordinates(Moves move);
 
         void Move(ICoordinates newCoordinates);
-
-        event PieceMovedDelegate Moved;
     }
 }

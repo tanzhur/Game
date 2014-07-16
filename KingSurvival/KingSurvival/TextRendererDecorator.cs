@@ -5,8 +5,6 @@
         public TextRendererDecorator(RendererBase rendererBase) 
             : base(rendererBase)
         {
-            
-
         }
 
         public override void RenderText(string text, int offsetX, int offsetY)

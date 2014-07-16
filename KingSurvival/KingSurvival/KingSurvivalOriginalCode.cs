@@ -45,6 +45,7 @@
                 }
             }
         }
+
         public static void Main(string[] args)
         {
             const int PawnAStartRow = 0;

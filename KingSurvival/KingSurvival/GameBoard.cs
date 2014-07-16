@@ -32,19 +32,20 @@
 
         public GameBoard()
         {
-            this.currentGameFieldObjects = new char[,] {    
-            {' ',' ',' ',' ','0',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' ',' '},
-            {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '},
-            {'0',' ','|',' ','A',' ','-',' ','B',' ','-',' ','C',' ','–',' ','D',' ','-',' ','|'},
-            {'1',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-            {'2',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-            {'3',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-            {'4',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-            {'5',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
-            {'6',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
-            {'7',' ','|',' ','-',' ','+',' ','–',' ','K',' ','–',' ','+',' ','–',' ','+',' ','|'},
-            {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '}
-        };
+            this.currentGameFieldObjects = new char[,] 
+            {    
+                {' ',' ',' ',' ','0',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' ',' '},
+                {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '},
+                {'0',' ','|',' ','A',' ','-',' ','B',' ','-',' ','C',' ','–',' ','D',' ','-',' ','|'},
+                {'1',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
+                {'2',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
+                {'3',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
+                {'4',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
+                {'5',' ','|',' ','-',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','|'},
+                {'6',' ','|',' ','+',' ','–',' ','+',' ','–',' ','+',' ','–',' ','+',' ','-',' ','|'},
+                {'7',' ','|',' ','-',' ','+',' ','–',' ','K',' ','–',' ','+',' ','–',' ','+',' ','|'},
+                {' ',' ',' ','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',' '}
+            };
         }
 
         public static GameBoard Instance
@@ -87,13 +88,13 @@
         public void Notify(IPiece piece, ICoordinates newPosition)
         {
             int oldDisplayPositionRow = TopBoardOffset + piece.Coordinates.Y;
-            int oldDisplayPositionCol = LeftBoardOffset + DisplayBoardPlaceSize * piece.Coordinates.X;
+            int oldDisplayPositionCol = LeftBoardOffset + (DisplayBoardPlaceSize * piece.Coordinates.X);
 
             this.currentGameFieldObjects[oldDisplayPositionRow, oldDisplayPositionCol]
                 = this.OriginalGameFieldObjects[oldDisplayPositionRow, oldDisplayPositionCol];
 
             int newDisplayPositionRow = TopBoardOffset + newPosition.Y;
-            int newDisplayPositionCol = LeftBoardOffset + DisplayBoardPlaceSize * newPosition.X;
+            int newDisplayPositionCol = LeftBoardOffset + (DisplayBoardPlaceSize * newPosition.X);
 
             this.currentGameFieldObjects[newDisplayPositionRow, newDisplayPositionCol] = piece.ID;
         }

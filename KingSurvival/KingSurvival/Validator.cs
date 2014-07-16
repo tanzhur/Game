@@ -1,6 +1,7 @@
 ﻿namespace KingSurvival
 {
     using System;
+
     public static class Validator
     {
         public static void CheckValueIsNull(object value, string propertyName)

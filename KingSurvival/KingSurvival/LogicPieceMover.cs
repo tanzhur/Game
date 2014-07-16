@@ -9,7 +9,9 @@
     {
         private LogicPlayerPieceMoverBase pieceMoverStrategy;
 
-        public LogicPieceMover() { }
+        public LogicPieceMover() 
+        { 
+        }
 
         public LogicPlayerPieceMoverBase PieceMoverStrategy
         {
@@ -17,6 +19,7 @@
             {
                 return this.pieceMoverStrategy;
             }
+
             set
             {
                 Validator.CheckValueIsNull(value, "Piece mover strategy can not be null or empty");
