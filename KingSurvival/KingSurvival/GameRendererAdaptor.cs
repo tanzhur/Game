@@ -10,6 +10,10 @@
     {
         private readonly TextRendererDecoratorBase textRendererDecorator;
 
+        /// <summary>
+        /// Initializes a new instance of GameRendererAdaptor class
+        /// </summary>
+        /// <param name="textRendererDecorator"></param>
         public GameRendererAdaptor(TextRendererDecoratorBase textRendererDecorator)
         {
             Validator.CheckValueIsNull(textRendererDecorator, "Text renderer decorator for the game engine");
