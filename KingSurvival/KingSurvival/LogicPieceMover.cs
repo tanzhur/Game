@@ -4,7 +4,10 @@
 
     using Interfaces;
 
-    // strategy design pattern client
+    /// <summary>
+    /// Handles moving pieces acording to predefined strategy.
+    /// <para>Implemented with strategy pattern.</para>
+    /// </summary>
     public class LogicPieceMover
     {
         private LogicPlayerPieceMoverBase pieceMoverStrategy;
@@ -13,6 +16,9 @@
         { 
         }
 
+        /// <summary>
+        /// Strategy for the current piece.
+        /// </summary>
         public LogicPlayerPieceMoverBase PieceMoverStrategy
         {
             private get
@@ -27,6 +33,13 @@
             }
         }
 
+        /// <summary>
+        /// Find piece within the collectionq, that can implement the command.
+        /// </summary>
+        /// <param name="command">Command to be carried.</param>
+        /// <param name="allPieces">Collection of pieces</param>
+        /// <param name="addScore">Whether or not to count score for this piece.</param>
+        /// <returns></returns>
         public IPiece FindPieceToMove(ICommand command, IList<IList<IPiece>> allPieces, out bool addScore)
         {
             return this.pieceMoverStrategy.FindPieceToMove(command, allPieces, out addScore);
