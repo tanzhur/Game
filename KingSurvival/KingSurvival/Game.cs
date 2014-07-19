@@ -1,5 +1,8 @@
 ﻿namespace KingSurvival
 {
+    /// <summary>
+    /// Initialize & Start KingSurvival
+    /// </summary>
     public class Game
     {
         private readonly GameEngine engine;
@@ -14,6 +17,9 @@
             this.engine = new GameEngine(renderer, controller);
         }
 
+        /// <summary>
+        /// Start the game.
+        /// </summary>
         public void Start()
         {
             this.engine.StartGame();

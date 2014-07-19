@@ -6,6 +6,9 @@
     using Enums;
     using Interfaces;
 
+    /// <summary>
+    /// Engine for KingSurvival implementation
+    /// </summary>
     public class GameEngine
     {
         private readonly IRenderer renderer;
@@ -78,12 +81,18 @@
             }
         }
 
+        /// <summary>
+        /// Ask player to make a move.
+        /// </summary>
+        /// <param name="playerLogic">Player strategy to follow.</param>
+        /// <param name="messageToPlayer">Player specific message.</param>
         private void PlayerTurn(LogicPlayerPieceMoverBase playerLogic, string messageToPlayer)
         {
             this.pieceMover.PieceMoverStrategy = playerLogic;
 
             while (true)
             {
+                // ask for command
                 this.ShowGameBoard();
                 this.ShowMessageBellowGameBoard(messageToPlayer);
 
@@ -99,6 +108,7 @@
 
                 var pieceToMove = this.pieceMover.FindPieceToMove(command, this.allPieces, out addKingMove);
 
+                // and command is valid for any piece
                 if (pieceToMove == null)
                 {
                     this.ShowIllegalMove();
@@ -107,6 +117,7 @@
 
                 var newPieceCoordinates = pieceToMove.GetNewCoordinates(command.Move);
 
+                // and command is valid for current board positioning
                 if (!this.IsPossibleMove(pieceToMove, newPieceCoordinates))
                 {
                     this.ShowIllegalMove();
@@ -126,6 +137,9 @@
             this.CheckGameState();
         }
 
+        /// <summary>
+        /// Checks if the game can progress.
+        /// </summary>
         private void CheckGameState()
         {
             // if king reached top or pawns can not move - game over king wins
@@ -172,6 +186,12 @@
             return true;
         }
 
+        /// <summary>
+        /// Check if piece can move in the current playground.
+        /// </summary>
+        /// <param name="pieceToMove">Piece to move.</param>
+        /// <param name="newPieceCoordinates">Desired move coordinates.</param>
+        /// <returns></returns>
         private bool IsPossibleMove(IPiece pieceToMove, ICoordinates newPieceCoordinates)
         {
             if (newPieceCoordinates.X < 0 ||
@@ -207,6 +227,10 @@
             this.controller.PressAnyKey();
         }
 
+        /// <summary>
+        /// Print notification messages for current player.
+        /// </summary>
+        /// <param name="messageToPlayer">message for current player</param>
         private void ShowMessageBellowGameBoard(string messageToPlayer)
         {
             this.renderer.RenderText(GameConstants.BlankMessage, this.initialMessagesCoordinates);
