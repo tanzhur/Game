@@ -1,6 +1,10 @@
 ﻿namespace KingSurvival
 {
-    public abstract class TextRendererDecoratorBase : RendererBase // decorator design pattern decorator base
+    /// <summary>
+    /// TextRendererDecoratorBase
+    /// Decorator Design Pattern
+    /// </summary>
+    public abstract class TextRendererDecoratorBase : RendererBase
     {
         private readonly RendererBase rendererBase;
 

@@ -2,10 +2,13 @@
 {
     using Interfaces;
 
-    // adaptor design pattern
+    /// <summary>
+    /// GameRendererAdaptor class
+    /// Adapter design pattern.
+    /// </summary>
     public class GameRendererAdaptor : IRenderer
     {
-        private TextRendererDecoratorBase textRendererDecorator;
+        private readonly TextRendererDecoratorBase textRendererDecorator;
 
         public GameRendererAdaptor(TextRendererDecoratorBase textRendererDecorator)
         {

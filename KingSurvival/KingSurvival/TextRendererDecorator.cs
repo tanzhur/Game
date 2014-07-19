@@ -1,6 +1,10 @@
 ﻿namespace KingSurvival
 {
-    public class TextRendererDecorator : TextRendererDecoratorBase // decorator design pattern concrete decorator
+    /// <summary>
+    /// TextRendererDecorator class
+    /// Decorator Design Pattern
+    /// </summary>
+    public class TextRendererDecorator : TextRendererDecoratorBase
     {
         public TextRendererDecorator(RendererBase rendererBase) 
             : base(rendererBase)
@@ -9,7 +13,7 @@
 
         public override void RenderText(string text, int offsetX, int offsetY)
         {
-            char[,] textAsMatrix = new char[1, text.Length];
+            var textAsMatrix = new char[1, text.Length];
 
             for (int i = 0; i < text.Length; i++)
             {

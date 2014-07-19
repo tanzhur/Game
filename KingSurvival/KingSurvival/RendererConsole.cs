@@ -2,7 +2,11 @@
 {
     using System;
 
-    public class RendererConsole : RendererBase // decorator design pattern concrete component
+    /// <summary>
+    /// RendererConsole Class
+    /// Decorator Design pattern - concrete component.
+    /// </summary>
+    public class RendererConsole : RendererBase
     {
         public override void Render(char[,] objectToRender, int offsetX, int offsetY)
         {
