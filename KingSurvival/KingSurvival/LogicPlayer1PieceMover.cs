@@ -4,7 +4,9 @@
 
     using Interfaces;
 
-    // strategy design pattern
+    /// <summary>
+    /// Piece mover strategy that is specific for player 1.
+    /// </summary>
     public class LogicPlayer1PieceMover : LogicPlayerPieceMoverBase
     {
         public override IPiece FindPieceToMove(ICommand command, IList<IList<IPiece>> allPieces, out bool addScore)

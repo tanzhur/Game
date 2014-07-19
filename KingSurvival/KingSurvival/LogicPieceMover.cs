@@ -39,7 +39,7 @@
         /// <param name="command">Command to be carried.</param>
         /// <param name="allPieces">Collection of pieces</param>
         /// <param name="addScore">Whether or not to count score for this piece.</param>
-        /// <returns></returns>
+        /// <returns>Piece in the collection that can carry the command.</returns>
         public IPiece FindPieceToMove(ICommand command, IList<IList<IPiece>> allPieces, out bool addScore)
         {
             return this.pieceMoverStrategy.FindPieceToMove(command, allPieces, out addScore);
