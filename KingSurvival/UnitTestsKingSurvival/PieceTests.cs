@@ -52,5 +52,14 @@
         {
             piece.Coordinates = null;
         }
+
+        [TestMethod]
+        [TestCategory("FunctionalityTests")]
+        public void TestPieceMoveToACorrectValue()
+        {
+            Coordinates newCoords = new Coordinates(5, 5);
+            piece.Move(newCoords);
+            Assert.AreEqual(newCoords, piece.Coordinates);
+        }
     }
 }
