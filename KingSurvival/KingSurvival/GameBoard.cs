@@ -1,18 +1,29 @@
 ﻿namespace KingSurvival
 {
     using System;
-
     using Interfaces;
 
+    /// <summary>
+    /// GameBoard class holds board sizes and ralation between screen and logical coordinates.
+    /// <para>Part of observer design pattern.</para>
+    /// </summary>
     public class GameBoard : IGameBoard, IRenderable, IGamePieceObserver
     {
+        // Real game size, without screen decorations
         private const int TotalPlayfieldSize = 8;
+
+        // Offsets displayed gameboard on screen
         private const int TopBoardOffset = 2;
         private const int LeftBoardOffset = 4;
+
+        // Size of display board place, including space
         private const int DisplayBoardPlaceSize = 2;
 
         private static GameBoard instance;
 
+        /// <summary>
+        /// Holds gamefield without game pieces
+        /// </summary>
         private readonly char[,] originalGameFieldObjects = 
         {    
             { ' ', ' ', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ' },
@@ -28,8 +39,14 @@
             { ' ', ' ', ' ', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', ' ' }
         };
 
+        /// <summary>
+        /// Holds gamefield with game pieces
+        /// </summary>
         private char[,] currentGameFieldObjects;
 
+        /// <summary>
+        /// Gameboard constructor with initialized gameboard
+        /// </summary>
         public GameBoard()
         {
             this.currentGameFieldObjects = new char[,] 
@@ -61,6 +78,9 @@
             }
         }
 
+        /// <summary>
+        /// Width of displayed gameboard
+        /// </summary>
         public int Width
         {
             get
@@ -69,6 +89,9 @@
             }
         }
 
+        /// <summary>
+        /// Height of displayed gameboard
+        /// </summary>
         public int Height
         {
             get
@@ -77,6 +100,9 @@
             }
         }
 
+        /// <summary>
+        /// Real size of playfield, without screen decorations
+        /// </summary>
         public int PlayfieldSize
         {
             get
@@ -85,6 +111,10 @@
             }
         }
 
+        /// <summary>
+        /// Image of the current gameboard
+        /// </summary>
+        /// <returns>Char array with gameboard and game pieces</returns>
         public char[,] Image
         {
             get
@@ -103,6 +133,12 @@
             }
         }
 
+        /// <summary>
+        /// Notify when a game piece change her position.
+        /// Calculates relation between screen and logical coordinates.
+        /// </summary>
+        /// <param name="piece">Game piece who change her position</param>
+        /// <param name="newPosition">The new position on gameboard</param>
         public void Notify(IPiece piece, ICoordinates newPosition)
         {
             int oldDisplayPositionRow = TopBoardOffset + piece.Coordinates.Y;
