@@ -1,8 +1,9 @@
-﻿using System;
-using System.IO;
-
-namespace UnitTestsKingSurvival
+﻿namespace UnitTestsKingSurvival
 {
+    using System;
+    using System.IO;
+    using System.Text;
+
     /// <summary>
     /// This class redirects the standard input from the console to a 
     /// StringReader. Every time the method Console.ReadLine() is called 
@@ -11,6 +12,8 @@ namespace UnitTestsKingSurvival
     public class TestConsole
     {
         private StringReader simulatedUserRead;
+        StringBuilder consoleContent;
+        StringWriter simulatedWrite;
 
         /// <summary>
         /// Constructor.
@@ -28,6 +31,11 @@ namespace UnitTestsKingSurvival
             {
                 this.simulatedUserRead.Close();
             }
+
+            if (this.simulatedWrite != null)
+            {
+                this.simulatedWrite.Close();
+            }
         }
 
         /// <summary>
@@ -40,6 +48,17 @@ namespace UnitTestsKingSurvival
         }
 
         /// <summary>
+        /// This method redirects the result of the Console.WriteLine() function and now
+        /// it writes to the consoleContent StringBuilder.
+        /// </summary>
+        public void RedirectStandartOutputToConsole()
+        {
+            consoleContent = new StringBuilder();
+            simulatedWrite = new StringWriter(consoleContent);
+            Console.SetOut(simulatedWrite);
+        }
+
+        /// <summary>
         /// This method resets the ConsleIn to the standard stream.
         /// </summary>
         public void ResetInputAndOutputToStandard()
@@ -48,6 +67,11 @@ namespace UnitTestsKingSurvival
             StreamReader standartIn = new StreamReader(Console.OpenStandardInput());
             standartIn.Dispose();
             Console.SetIn(standartIn);
+
+            // Reset console out.
+            StreamWriter standartOut = new StreamWriter(Console.OpenStandardOutput());
+            standartOut.AutoFlush = true;
+            Console.SetOut(standartOut);
         }
 
         /// <summary>
@@ -55,7 +79,7 @@ namespace UnitTestsKingSurvival
         /// When a Console.ReadLine() method is called the input gets flushed.
         /// </summary>
         /// <param name="input">The string we want to test with.</param>
-        public void testWrite(string input)
+        public void TestWrite(string input)
         {
             if (this.simulatedUserRead != null)
             {
@@ -64,6 +88,20 @@ namespace UnitTestsKingSurvival
 
             this.simulatedUserRead = new StringReader(input);
             RedirectStandartInput();
+        }
+
+        /// <summary>
+        /// This method returns the information written by the Console.Write methods.
+        /// </summary>
+        /// <returns>answer as string.</returns>
+        public string GetWrittenContent()
+        {
+            if (consoleContent == null)
+            {
+                throw new ArgumentNullException("The RedirectStandartOutput method must be called first.");
+            }
+
+            return this.consoleContent.ToString();
         }
     }
 }

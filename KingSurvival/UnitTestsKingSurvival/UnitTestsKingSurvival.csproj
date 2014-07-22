@@ -70,6 +70,7 @@
     <Compile Include="TestConsoleTests.cs" />
     <Compile Include="LogicPieceMoverTests.cs" />
     <Compile Include="LogicPlayer1PieceMoverTests.cs" />
+    <Compile Include="RendererConsoleTests.cs" />
     <Compile Include="ValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>

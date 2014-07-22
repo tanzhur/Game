@@ -27,7 +27,7 @@
         public void GameControllerKURCommand()
         {
             testConsole = new TestConsole();
-            testConsole.testWrite("KUR");
+            testConsole.TestWrite("KUR");
             this.testCommand = this.testGameController.GetCommand();
 
             Assert.AreEqual('K', testCommand.TargetID);
@@ -39,7 +39,7 @@
         public void GameControllerADLCommand()
         {
             testConsole = new TestConsole();
-            testConsole.testWrite("ADL");
+            testConsole.TestWrite("ADL");
             this.testCommand = this.testGameController.GetCommand();
 
             Assert.AreEqual('A', testCommand.TargetID);
@@ -51,7 +51,7 @@
         public void GameControllerKULCommand()
         {
             testConsole = new TestConsole();
-            testConsole.testWrite("KUL");
+            testConsole.TestWrite("KUL");
             this.testCommand = this.testGameController.GetCommand();
 
             Assert.AreEqual('K', testCommand.TargetID);
@@ -63,7 +63,7 @@
         public void GameControllerJDRCommand()
         {
             testConsole = new TestConsole();
-            testConsole.testWrite("JDR");
+            testConsole.TestWrite("JDR");
             this.testCommand = this.testGameController.GetCommand();
 
             Assert.AreEqual('J', testCommand.TargetID);
@@ -75,7 +75,7 @@
         public void GameControllerWrongCommandTest()
         {
             testConsole = new TestConsole();
-            testConsole.testWrite("Bll");
+            testConsole.TestWrite("Bll");
             this.testCommand = this.testGameController.GetCommand();
 
             Assert.AreEqual(null, testCommand);
@@ -86,7 +86,7 @@
         public void GameControllerCommadToLongTest2()
         {
             testConsole = new TestConsole();
-            testConsole.testWrite("Bllasd");
+            testConsole.TestWrite("Bllasd");
             this.testCommand = this.testGameController.GetCommand();
 
             Assert.AreEqual(null, testCommand);

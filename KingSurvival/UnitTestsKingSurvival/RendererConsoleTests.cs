@@ -7,31 +7,32 @@
     [TestClass]
     public class RendererConsoleTests
     {
-        RendererConsole renderer = new RendererConsole(); 
+        static TestConsole testConsole = new TestConsole();
+
+        [TestCleanup]
+        public void Cleanup() 
+        {
+            testConsole.ResetInputAndOutputToStandard();
+        }
 
         [TestMethod]
-        [TestCategory("FunctionalityTests")]
-        public void ClearScreenMethodTest()
+        [TestCategory("InitializationTests")]
+        public void InitializeRenderer()
         {
-            renderer.ClearScreen();
+            var rendererConsole = new RendererConsole();
         }
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void RendererMethodTest()
+        public void RenderMethodTest() 
         {
-            char[,] testCharArr = {
-                {'-', '-', '-', '-'},
-                {'+', '+', '+', '+'},
-                {'-', '-', '-', '-'},
-                {'+', '+', '+', '+'},
-                {'-', '-', '-', '-'},
-                {'+', '+', '+', '+'},
-                {'-', '-', '-', '-'},
-                {'+', '+', 'K', '+'}
-            };
+            var rendererConsole = new RendererConsole();
+            char[,] testInputToRender = {{'1','2'}, {'3','4'}};
 
-            renderer.Render(testCharArr, 2, 2);
+            testConsole.RedirectStandartOutputToConsole();
+            rendererConsole.Render(testInputToRender, 0, 0);
+            string answer = testConsole.GetWrittenContent();
+            Assert.AreEqual("1234", answer);
         }
     }
 }
