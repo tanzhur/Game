@@ -11,7 +11,7 @@
     public abstract class LogicPlayerPieceMoverBase
     {
         /// <summary>
-        /// Find piece within the collectionq, that can implement the command.
+        /// Find piece within the collection, that can implement the command.
         /// </summary>
         /// <param name="command">Command to be carried.</param>
         /// <param name="allPieces">Collection of pieces</param>

@@ -5,19 +5,25 @@
     using Interfaces;
 
     /// <summary>
-    /// Handles moving pieces acording to predefined strategy.
+    /// Handles moving pieces according to predefined strategy.
     /// <para>Implemented with strategy pattern.</para>
     /// </summary>
     public class LogicPieceMover
     {
+        /// <summary>
+        /// Holds and instance of the logic to use when finding piece to move
+        /// </summary>
         private LogicPlayerPieceMoverBase pieceMoverStrategy;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogicPieceMover"/> class
+        /// </summary>
         public LogicPieceMover() 
         { 
         }
 
         /// <summary>
-        /// Strategy for the current piece.
+        /// Gets or sets the strategy for the current piece.
         /// </summary>
         public LogicPlayerPieceMoverBase PieceMoverStrategy
         {
@@ -34,7 +40,7 @@
         }
 
         /// <summary>
-        /// Find piece within the collectionq, that can implement the command.
+        /// Find piece within the collection, that can implement the command.
         /// </summary>
         /// <param name="command">Command to be carried.</param>
         /// <param name="allPieces">Collection of pieces</param>

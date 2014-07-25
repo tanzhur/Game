@@ -1,22 +1,22 @@
 ﻿namespace KingSurvival.Interfaces
 {
     /// <summary>
-    /// Interface for work with gameboard
+    /// Interface for work with game-board
     /// </summary>
     public interface IGameBoard : IGamePieceObserver, IRenderable
     {
         /// <summary>
-        /// Width of displayed gameboard
+        /// Gets the  width of displayed game-board
         /// </summary>
         int Width { get; }
 
         /// <summary>
-        /// Height of displayed gameboard
+        /// Gets the height of displayed game-board
         /// </summary>
         int Height { get; }
 
         /// <summary>
-        /// Real size of playfield, without screen decorations
+        /// Gets the real size of playfield, without screen decorations
         /// </summary>
         int PlayfieldSize { get; }
     }

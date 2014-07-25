@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30626.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvival", "KingSurvival\KingSurvival.csproj", "{9EEFC595-E264-4723-AACF-C1362B748B23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsKingSurvival", "UnitTestsKingSurvival\UnitTestsKingSurvival.csproj", "{224AB9D7-666C-41D5-B74B-D1A07BD4C7BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalCode", "OriginalCode\OriginalCode.csproj", "{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,16 @@ Global
 		{224AB9D7-666C-41D5-B74B-D1A07BD4C7BA}.Release|ARM.ActiveCfg = Release|Any CPU
 		{224AB9D7-666C-41D5-B74B-D1A07BD4C7BA}.Release|x64.ActiveCfg = Release|Any CPU
 		{224AB9D7-666C-41D5-B74B-D1A07BD4C7BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Release|ARM.ActiveCfg = Release|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Release|x64.ActiveCfg = Release|Any CPU
+		{289FC54C-C5CE-4FEE-B1EB-9E5985DCD5BD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

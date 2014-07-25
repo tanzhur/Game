@@ -4,25 +4,38 @@
     using Interfaces;
 
     /// <summary>
-    /// GameBoard class holds board sizes and ralation between screen and logical coordinates.
+    /// GameBoard class holds board sizes and relation between screen and logical coordinates.
     /// <para>Part of observer design pattern.</para>
     /// </summary>
     public class GameBoard : IGameBoard, IRenderable, IGamePieceObserver
     {
-        // Real game size, without screen decorations
+        /// <summary>
+        /// Real game size, without screen decorations.
+        /// </summary>
         private const int TotalPlayfieldSize = 8;
 
-        // Offsets displayed gameboard on screen
+        /// <summary>
+        /// Top Offset displayed game board on screen.
+        /// </summary>
         private const int TopBoardOffset = 2;
+
+        /// <summary>
+        /// Left Offset displayed game board on screen.
+        /// </summary>
         private const int LeftBoardOffset = 4;
 
-        // Size of display board place, including space
+        /// <summary>
+        /// Size of display board place, including space.
+        /// </summary>
         private const int DisplayBoardPlaceSize = 2;
 
+        /// <summary>
+        /// The only instance kept of the game board object.
+        /// </summary>
         private static GameBoard instance;
 
         /// <summary>
-        /// Holds gamefield without game pieces
+        /// Holds game field without game pieces
         /// </summary>
         private readonly char[,] originalGameFieldObjects = 
         {    
@@ -40,12 +53,12 @@
         };
 
         /// <summary>
-        /// Holds gamefield with game pieces
+        /// Holds game field with game pieces
         /// </summary>
         private char[,] currentGameFieldObjects;
 
         /// <summary>
-        /// Gameboard constructor with initialized gameboard
+        /// Initializes a new instance of the <see cref="GameBoard"/> class with initialized game board
         /// </summary>
         public GameBoard()
         {
@@ -65,6 +78,9 @@
             };
         }
 
+        /// <summary>
+        /// Gets the only instance of the game board
+        /// </summary>
         public static GameBoard Instance
         {
             get
@@ -79,7 +95,7 @@
         }
 
         /// <summary>
-        /// Width of displayed gameboard
+        /// Gets the width of displayed game board
         /// </summary>
         public int Width
         {
@@ -90,7 +106,7 @@
         }
 
         /// <summary>
-        /// Height of displayed gameboard
+        /// Gets the height of displayed game board
         /// </summary>
         public int Height
         {
@@ -101,7 +117,7 @@
         }
 
         /// <summary>
-        /// Real size of playfield, without screen decorations
+        /// Gets the real size of play field, without screen decorations
         /// </summary>
         public int PlayfieldSize
         {
@@ -112,7 +128,7 @@
         }
 
         /// <summary>
-        /// Image of the current gameboard
+        /// Gets the image of the current game board
         /// </summary>
         /// <returns>Char array with gameboard and game pieces</returns>
         public char[,] Image
@@ -138,7 +154,7 @@
         /// Calculates relation between screen and logical coordinates.
         /// </summary>
         /// <param name="piece">Game piece who change her position</param>
-        /// <param name="newPosition">The new position on gameboard</param>
+        /// <param name="newPosition">The new position on game board</param>
         public void Notify(IPiece piece, ICoordinates newPosition)
         {
             int oldDisplayPositionRow = TopBoardOffset + piece.Coordinates.Y;

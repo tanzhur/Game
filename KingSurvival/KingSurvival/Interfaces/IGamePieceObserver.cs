@@ -9,8 +9,8 @@
         /// <summary>
         /// Notify when a game piece change her position.
         /// </summary>
-        /// <param name="piece"></param>
-        /// <param name="newPosition"></param>
+        /// <param name="piece">The current piece to be moved</param>
+        /// <param name="newPosition">The future position of the piece that is going to be moved</param>
         void Notify(IPiece piece, ICoordinates newPosition);
     }
 }

@@ -1,12 +1,18 @@
 ﻿namespace KingSurvival
 {
     /// <summary>
-    /// Initialize & Start KingSurvival
+    /// Initialize and Start KingSurvival
     /// </summary>
     public class Game
     {
+        /// <summary>
+        /// The instance of the game engine used by the Game class.
+        /// </summary>
         private readonly GameEngine engine;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Game"/> class for operation
+        /// </summary>
         public Game()
         {
             var decoratedRenderer = new TextRendererDecorator(new RendererConsole());

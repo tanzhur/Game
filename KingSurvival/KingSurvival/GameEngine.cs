@@ -11,23 +11,71 @@
     /// </summary>
     public class GameEngine
     {
+        /// <summary>
+        /// The video renderer used by the game - passed on instance creation.
+        /// </summary>
         private readonly IRenderer renderer;
+
+        /// <summary>
+        /// The controller used by the game - passed on instance creation.
+        /// </summary>
         private readonly IController controller;
 
+        /// <summary>
+        /// List of lists holding all pieces in the game - each list represents a collection of pieces for each player.
+        /// </summary>
         private readonly IList<IList<IPiece>> allPieces;
 
+        /// <summary>
+        /// IGameBoard that tracks the pieces and shows their position to the player.
+        /// </summary>
         private readonly IGameBoard gameBoard;
+
+        /// <summary>
+        /// The coordinates at which the game board will be displayed.
+        /// </summary>
         private readonly ICoordinates initialGameBoardCoordinates;
+
+        /// <summary>
+        /// The coordinates at which the game messages to the player will be displayed.
+        /// </summary>
         private readonly ICoordinates initialMessagesCoordinates;
 
+        /// <summary>
+        /// The logic holder that moves the pieces of the current player.
+        /// </summary>
         private readonly LogicPieceMover pieceMover;
+
+        /// <summary>
+        /// The logic for moving the pieces if it is player 1 turn.
+        /// </summary>
         private readonly LogicPlayerPieceMoverBase playerOneMoveLogic;
+
+        /// <summary>
+        /// The logic for moving the pieces if it is player 2 turn.
+        /// </summary>
         private readonly LogicPlayerPieceMoverBase playerTwoMoveLogic;
 
+        /// <summary>
+        /// Holds information if the game should continue to ask players for commands.
+        /// </summary>
         private bool gameIsRunning;
+
+        /// <summary>
+        /// Holds if the king has a possible move - if he is not stuck by the pawns or the size of the game board.
+        /// </summary>
         private bool kingCanMove;
+
+        /// <summary>
+        /// Counts the king moves.
+        /// </summary>
         private int kingMoves;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameEngine"/> class holding the logic for each of the games.
+        /// </summary>
+        /// <param name="renderer">The video renderer used by the game.</param>
+        /// <param name="controller">The controller used by the game.</param>
         public GameEngine(IRenderer renderer, IController controller)
         {
             this.renderer = renderer;
@@ -51,25 +99,37 @@
             this.kingMoves = 0;
         }
 
+        /// <summary>
+        /// Initializes the game loop and repeats it as long as one of the players wins.
+        /// </summary>
         public void StartGame()
         {
+            // the game board should know if a piece moves.
             this.AttachEventsToAllThePieces();
 
+            // the main game loop.
             while (this.gameIsRunning)
             {
+                // executes a player 1 move by attaches logic for player 1.
                 this.PlayerTurn(this.playerOneMoveLogic, GameConstants.Player1Turn);
 
+                // checks if player 1 didnt end the game - the check for player 2 is done at the entry of the loop.
                 if (!this.gameIsRunning)
                 {
+                    // game is over - break the loop and show game result.
                     break;
                 }
 
+                // executes a player 1 move by attaches logic for player 2.
                 this.PlayerTurn(this.playerTwoMoveLogic, GameConstants.Player2Turn);
             }
 
             this.ShowGameOutcome();
         }
 
+        /// <summary>
+        /// Attaches the game board Notify method to all the moved event of all the pieces.
+        /// </summary>
         private void AttachEventsToAllThePieces()
         {
             foreach (var list in this.allPieces)
@@ -88,6 +148,7 @@
         /// <param name="messageToPlayer">Player specific message.</param>
         private void PlayerTurn(LogicPlayerPieceMoverBase playerLogic, string messageToPlayer)
         {
+            // change the logic of the piece mover with the passed one
             this.pieceMover.PieceMoverStrategy = playerLogic;
 
             while (true)
@@ -96,8 +157,10 @@
                 this.ShowGameBoard();
                 this.ShowMessageBellowGameBoard(messageToPlayer);
 
+                // gets a command via the game controller
                 var command = this.controller.GetCommand();
 
+                // command is not valid or null - show error and ask again
                 if (command == null)
                 {
                     this.ShowIllegalMove();
@@ -106,6 +169,7 @@
 
                 var addKingMove = false;
 
+                // finds a piece to move depending on the logic passed to the piece mover
                 var pieceToMove = this.pieceMover.FindPieceToMove(command, this.allPieces, out addKingMove);
 
                 // and command is valid for any piece
@@ -115,6 +179,7 @@
                     continue;
                 }
 
+                // gets the future coordinates of the piece if it executes the current move
                 var newPieceCoordinates = pieceToMove.GetNewCoordinates(command.Move);
 
                 // and command is valid for current board positioning
@@ -124,8 +189,10 @@
                     continue;
                 }
 
+                // move the piece via its method so that the event can be fired.
                 pieceToMove.Move(newPieceCoordinates);
 
+                // if the PieceMoverStrategy says that a king move should be added - add one.
                 if (addKingMove)
                 {
                     this.kingMoves++;
@@ -134,6 +201,7 @@
                 break;
             }
 
+            // checks if the game is over
             this.CheckGameState();
         }
 
@@ -155,6 +223,11 @@
             }
         }
 
+        /// <summary>
+        /// Checks if passed pieces have reached the top of the board - used primary as checker if the king wins in this settings.
+        /// </summary>
+        /// <param name="piecesToCheck">The pieces to be checked</param>
+        /// <returns>The answer if there is at least one piece that can move</returns>
         private bool ArePiecesOnTopOfBoard(IList<IPiece> piecesToCheck)
         {
             foreach (var piece in piecesToCheck)
@@ -168,6 +241,11 @@
             return true;
         }
 
+        /// <summary>
+        /// Shows if all the pieces can not perform any moves
+        /// </summary>
+        /// <param name="piecesToCheck">The list of pieces to check</param>
+        /// <returns>If there is at least one piece that can move</returns>
         private bool ArePiecesStuck(IList<IPiece> piecesToCheck)
         {
             foreach (var piece in piecesToCheck)
@@ -191,9 +269,10 @@
         /// </summary>
         /// <param name="pieceToMove">Piece to move.</param>
         /// <param name="newPieceCoordinates">Desired move coordinates.</param>
-        /// <returns></returns>
+        /// <returns>If the current move is a possible one</returns>
         private bool IsPossibleMove(IPiece pieceToMove, ICoordinates newPieceCoordinates)
         {
+            // checks if the piece will leave the game board.
             if (newPieceCoordinates.X < 0 ||
                 newPieceCoordinates.X >= this.gameBoard.PlayfieldSize ||
                 newPieceCoordinates.Y < 0 ||
@@ -202,15 +281,18 @@
                 return false;
             }
 
+            // checks if the piece is overlapping with another piece.
             foreach (var list in this.allPieces)
             {
                 foreach (var piece in list)
                 {
+                    // the piece can not overlap with itself.
                     if (pieceToMove == piece)
                     {
                         continue;
                     }
 
+                    // the piece overlaps with another piece.
                     if (newPieceCoordinates.Equals(piece.Coordinates))
                     {
                         return false;
@@ -221,6 +303,9 @@
             return true;
         }
 
+        /// <summary>
+        /// Notifies the player that the current move is illegal.
+        /// </summary>
         private void ShowIllegalMove()
         {
             this.ShowMessageBellowGameBoard(GameConstants.IllegalMove);
@@ -238,11 +323,17 @@
             this.renderer.RenderText(messageToPlayer, this.initialMessagesCoordinates);
         }
 
+        /// <summary>
+        /// Shows the game board with all the pieces on it.
+        /// </summary>
         private void ShowGameBoard()
         {
             this.renderer.Render(this.gameBoard, this.initialGameBoardCoordinates);
         }
 
+        /// <summary>
+        /// Shows the end game result when the game is over.
+        /// </summary>
         private void ShowGameOutcome()
         {
             if (this.kingCanMove)

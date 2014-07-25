@@ -4,13 +4,22 @@
 
     using Interfaces;
 
-    // facade design pattern
+    /// <summary>
+    /// Facade for creating all the game pieces needed in the game.
+    /// </summary>
     public class PlayersAllGamePiecesCreator 
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayersAllGamePiecesCreator"/> class.
+        /// </summary>
         public PlayersAllGamePiecesCreator()
         {
         }
 
+        /// <summary>
+        /// Creates all the game pieces needed in the game.
+        /// </summary>
+        /// <returns>List of lists of game pieces.</returns>
         public IList<IList<IPiece>> CreateGamePieces()
         {
             // main factory
