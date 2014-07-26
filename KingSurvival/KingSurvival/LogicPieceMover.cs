@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
 
+    using System.Diagnostics.CodeAnalysis;
     using Interfaces;
 
     /// <summary>
@@ -27,6 +28,7 @@
         /// </summary>
         public LogicPlayerPieceMoverBase PieceMoverStrategy
         {
+            [ExcludeFromCodeCoverage]
             private get
             {
                 return this.pieceMoverStrategy;

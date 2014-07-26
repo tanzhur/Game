@@ -71,6 +71,7 @@
     <Compile Include="LogicPieceMoverTests.cs" />
     <Compile Include="LogicPlayer1PieceMoverTests.cs" />
     <Compile Include="RendererConsoleTests.cs" />
+    <Compile Include="GameEngineTests.cs" />
     <Compile Include="ValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
