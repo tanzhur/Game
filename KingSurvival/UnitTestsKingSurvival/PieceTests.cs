@@ -55,9 +55,19 @@
 
         [TestMethod]
         [TestCategory("FunctionalityTests")]
-        public void TestPieceMoveToACorrectValue()
-        {
+        public void TestPieceMoveToACorrectValue(){
             Coordinates newCoords = new Coordinates(5, 5);
+            piece.Move(newCoords);
+            Assert.AreEqual(newCoords, piece.Coordinates);
+        }
+
+        [TestMethod]
+        [TestCategory("FunctionalityTests")]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestPieceMoveToACorrectValueWithDelegateSet()
+        {   
+            Coordinates newCoords = new Coordinates(5, 5);
+            piece.Moved += gameBoard.Notify;
             piece.Move(newCoords);
             Assert.AreEqual(newCoords, piece.Coordinates);
         }
