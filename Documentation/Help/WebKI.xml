@@ -26,21 +26,21 @@
   <HelpKINode Title="CommandMoveDownRight field" Url="html/1d48eb49-5b5a-972d-4dcc-d47ed3f42e4f.htm" />
   <HelpKINode Title="CommandMoveUpLeft field" Url="html/9b98a648-0b26-c572-b801-1bb1a45615b8.htm" />
   <HelpKINode Title="CommandMoveUpRight field" Url="html/d752ae2a-9cee-7d84-84ad-c643f6067b3d.htm" />
+  <HelpKINode Title="Coordinate structure">
+    <HelpKINode Title="Coordinate Structure" Url="html/a8eccbdc-4620-8e7c-577e-c45c3f36689a.htm" />
+    <HelpKINode Title="about Coordinate structure" Url="html/a8eccbdc-4620-8e7c-577e-c45c3f36689a.htm" />
+    <HelpKINode Title="constructor" Url="html/90d15de6-c7a4-8ee0-1b1e-8764a9d8f0d6.htm" />
+    <HelpKINode Title="methods" Url="html/b7101ae7-dd33-9c73-3930-0c79eb3ed3c6.htm" />
+    <HelpKINode Title="properties" Url="html/a255c6e7-241a-76bd-9c71-ac247eee31da.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Coordinate.Coordinate constructor" Url="html/90d15de6-c7a4-8ee0-1b1e-8764a9d8f0d6.htm" />
+  <HelpKINode Title="Coordinate.Equals method" Url="html/947a098d-4654-2675-7160-d81eee362e73.htm" />
+  <HelpKINode Title="Coordinate.X property" Url="html/96b45cec-3c6d-1b4e-99a2-dbf3b052e4b9.htm" />
+  <HelpKINode Title="Coordinate.Y property" Url="html/175a21cf-3388-9d1f-a260-a7cc88b7afdf.htm" />
   <HelpKINode Title="Coordinates property">
     <HelpKINode Title="IPiece.Coordinates Property " Url="html/924ecc19-12be-27c7-a024-57601c14a352.htm" />
     <HelpKINode Title="Piece.Coordinates Property " Url="html/28ec287d-9165-29a9-c8f4-8d709a47f05e.htm" />
   </HelpKINode>
-  <HelpKINode Title="Coordinates structure">
-    <HelpKINode Title="Coordinates Structure" Url="html/01ec9b6d-0462-0d46-4823-3eb4109194c8.htm" />
-    <HelpKINode Title="about Coordinates structure" Url="html/01ec9b6d-0462-0d46-4823-3eb4109194c8.htm" />
-    <HelpKINode Title="constructor" Url="html/646a46e3-e5da-828d-910c-3c71da5ef821.htm" />
-    <HelpKINode Title="methods" Url="html/9d3fb01e-8ea4-b5bd-49be-4b4fcd68bb48.htm" />
-    <HelpKINode Title="properties" Url="html/93ffa508-023c-b384-6ce5-bdae8664acfd.htm" />
-  </HelpKINode>
-  <HelpKINode Title="Coordinates.Coordinates constructor" Url="html/646a46e3-e5da-828d-910c-3c71da5ef821.htm" />
-  <HelpKINode Title="Coordinates.Equals method" Url="html/787602a8-362a-9b38-170e-22645321e27b.htm" />
-  <HelpKINode Title="Coordinates.X property" Url="html/65e456b0-1316-e8d1-1920-0e7125f6d91d.htm" />
-  <HelpKINode Title="Coordinates.Y property" Url="html/c62865e2-7f09-889e-7393-a4613a81859e.htm" />
   <HelpKINode Title="CreateGamePiece method" Url="html/8a3011dd-e4c0-5958-6709-1d29c88fc052.htm" />
   <HelpKINode Title="CreateGamePieces method" Url="html/a20f2041-b642-72f7-e2eb-020d08f1bb38.htm" />
   <HelpKINode Title="CreatePiece method">
@@ -58,7 +58,7 @@
   </HelpKINode>
   <HelpKINode Title="DownLeft enumeration member" Url="html/99502eb6-faff-a23e-2e59-1b37149ec31a.htm" />
   <HelpKINode Title="DownRight enumeration member" Url="html/99502eb6-faff-a23e-2e59-1b37149ec31a.htm" />
-  <HelpKINode Title="Equals method" Url="html/787602a8-362a-9b38-170e-22645321e27b.htm" />
+  <HelpKINode Title="Equals method" Url="html/947a098d-4654-2675-7160-d81eee362e73.htm" />
   <HelpKINode Title="Factory field" Url="html/1f417ccd-1af2-e8eb-35bf-42cd9633787b.htm" />
   <HelpKINode Title="FindPieceToMove method">
     <HelpKINode Title="LogicPieceMover.FindPieceToMove Method " Url="html/9b18ba8f-f2a3-a86a-bdf9-4fb8e5d9dde4.htm" />
@@ -260,7 +260,7 @@
   <HelpKINode Title="KingStartRow field" Url="html/a82c77f4-48d3-028b-c11e-88b58d3e1876.htm" />
   <HelpKINode Title="KingSurvival namespace" Url="html/d647d937-dc56-e77d-ca14-36906be617c9.htm" />
   <HelpKINode Title="KingSurvival.Command class" Url="html/6c8b1408-5645-600c-b424-4f87084dd8e1.htm" />
-  <HelpKINode Title="KingSurvival.Coordinates structure" Url="html/01ec9b6d-0462-0d46-4823-3eb4109194c8.htm" />
+  <HelpKINode Title="KingSurvival.Coordinate structure" Url="html/a8eccbdc-4620-8e7c-577e-c45c3f36689a.htm" />
   <HelpKINode Title="KingSurvival.Enums namespace" Url="html/4083624a-03ff-384e-406f-083c0fedf621.htm" />
   <HelpKINode Title="KingSurvival.Enums.Moves enumeration" Url="html/99502eb6-faff-a23e-2e59-1b37149ec31a.htm" />
   <HelpKINode Title="KingSurvival.Game class" Url="html/d767f59f-83e0-777a-5a46-7760f70cb172.htm" />
@@ -279,7 +279,6 @@
   <HelpKINode Title="KingSurvival.Interfaces.IPiece interface" Url="html/2a5f030e-f446-c6bb-c256-8832b05baea9.htm" />
   <HelpKINode Title="KingSurvival.Interfaces.IRenderable interface" Url="html/895bccb7-b07a-b8b6-648a-371a1929a451.htm" />
   <HelpKINode Title="KingSurvival.Interfaces.IRenderer interface" Url="html/4266782c-c976-200b-79e2-38955c8c50cd.htm" />
-  <HelpKINode Title="KingSurvival.Logger class" Url="html/35454250-496b-38eb-6801-e8b50c97c060.htm" />
   <HelpKINode Title="KingSurvival.LogicPieceMover class" Url="html/fdfbd257-d13c-710c-3de5-87723c16007e.htm" />
   <HelpKINode Title="KingSurvival.LogicPlayer1PieceMover class" Url="html/5246e0ad-2433-4305-f0ec-326b9e697fb6.htm" />
   <HelpKINode Title="KingSurvival.LogicPlayer2PieceMover class" Url="html/1bf5753e-9a1d-d210-d0fb-9865af4ce2d1.htm" />
@@ -301,13 +300,6 @@
   <HelpKINode Title="KingSurvival.TextRendererDecoratorBase class" Url="html/02f73c1c-399b-6815-435e-468d8f55b7e4.htm" />
   <HelpKINode Title="KingSurvival.Validator class" Url="html/1d05a009-5157-69e4-546e-ced84037a892.htm" />
   <HelpKINode Title="KingWinsInXTurns field" Url="html/41356448-ea14-c014-784f-f4f0ae1babee.htm" />
-  <HelpKINode Title="LogException method" Url="html/24e41ccc-deb3-d93a-5f87-bcbe222a6d6e.htm" />
-  <HelpKINode Title="Logger class">
-    <HelpKINode Title="Logger Class" Url="html/35454250-496b-38eb-6801-e8b50c97c060.htm" />
-    <HelpKINode Title="about Logger class" Url="html/35454250-496b-38eb-6801-e8b50c97c060.htm" />
-    <HelpKINode Title="methods" Url="html/44783542-ef99-23c8-ac8f-859708bf6a84.htm" />
-  </HelpKINode>
-  <HelpKINode Title="Logger.LogException method" Url="html/24e41ccc-deb3-d93a-5f87-bcbe222a6d6e.htm" />
   <HelpKINode Title="LogicPieceMover class">
     <HelpKINode Title="LogicPieceMover Class" Url="html/fdfbd257-d13c-710c-3de5-87723c16007e.htm" />
     <HelpKINode Title="about LogicPieceMover class" Url="html/fdfbd257-d13c-710c-3de5-87723c16007e.htm" />
@@ -578,11 +570,11 @@
     <HelpKINode Title="IGameBoard.Width Property " Url="html/be4ac7cb-e0ff-26b0-8213-5e5c2181b44f.htm" />
   </HelpKINode>
   <HelpKINode Title="X property">
-    <HelpKINode Title="Coordinates.X Property " Url="html/65e456b0-1316-e8d1-1920-0e7125f6d91d.htm" />
+    <HelpKINode Title="Coordinate.X Property " Url="html/96b45cec-3c6d-1b4e-99a2-dbf3b052e4b9.htm" />
     <HelpKINode Title="ICoordinates.X Property " Url="html/31be4f61-8ba3-2fd8-06a9-97a8f1c29ffd.htm" />
   </HelpKINode>
   <HelpKINode Title="Y property">
-    <HelpKINode Title="Coordinates.Y Property " Url="html/c62865e2-7f09-889e-7393-a4613a81859e.htm" />
+    <HelpKINode Title="Coordinate.Y Property " Url="html/175a21cf-3388-9d1f-a260-a7cc88b7afdf.htm" />
     <HelpKINode Title="ICoordinates.Y Property " Url="html/ac386b04-e0da-fc0f-7347-bd6b7e1bfc24.htm" />
   </HelpKINode>
 </HelpKI>
