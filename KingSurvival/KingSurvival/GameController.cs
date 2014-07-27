@@ -1,7 +1,6 @@
 ﻿namespace KingSurvival
 {
     using System;
-
     using Enums;
     using Interfaces;
 
@@ -32,15 +31,18 @@
             {
                 return new Command(currentCommandID, Moves.UpRight);
             }
-            else if (currentCommandMove == GameConstants.CommandMoveUpLeft)
+            
+            if (currentCommandMove == GameConstants.CommandMoveUpLeft)
             {
                 return new Command(currentCommandID, Moves.UpLeft);
             }
-            else if (currentCommandMove == GameConstants.CommandMoveDownRight)
+            
+            if (currentCommandMove == GameConstants.CommandMoveDownRight)
             {
                 return new Command(currentCommandID, Moves.DownRight);
             }
-            else if (currentCommandMove == GameConstants.CommandMoveDownLeft)
+            
+            if (currentCommandMove == GameConstants.CommandMoveDownLeft)
             {
                 return new Command(currentCommandID, Moves.DownLeft);
             }
