@@ -4,7 +4,12 @@ namespace UnitTestsKingSurvival
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using KingSurvival;
+    using KingSurvival.Interfaces;
+    using KingSurvival.Enums;
+    using WindowsInput;
     using System.IO;
+    using System.Collections.Generic;
+    using System.Windows.Forms;
 
     [TestClass]
     public class GameEngineTests
@@ -60,9 +65,6 @@ namespace UnitTestsKingSurvival
             var engine = new GameEngine(renderer, null);
 
             engine.StartGame();
-            bool result = engine.GetType() == typeof(GameEngine);
-
-            Assert.IsTrue(result);
         }
 
         [TestMethod]
@@ -73,9 +75,49 @@ namespace UnitTestsKingSurvival
             var engine = new GameEngine(null, null);
 
             engine.StartGame();
-            bool result = engine.GetType() == typeof(GameEngine);
-
-            Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        [TestCategory("FunctionalityTests")]
+        public void GameEngineStartGameShouldNotThrowException()
+        {
+            var rendererConsole = new RendererConsole();
+            var renderer = new GameRendererAdaptor(new TextRendererDecorator(rendererConsole));
+            var controller = new FakeController();
+            var engine = new GameEngine(renderer, controller);
+
+            engine.StartGame();
+            Assert.IsTrue(true);
+        }
+
+
+    }
+    public class FakeController : IController
+    {
+        private static readonly Random getrandom = new Random();
+        private char[] charList = new char[]{'K', 'A', 'B', 'C', 'D'};
+        public IController controller;
+
+        public FakeController()
+        {
+            this.controller = new GameController();
+        }
+
+        public ICommand GetCommand()
+        {
+            ICommand command = new Command(RandomPiece(), (Moves)getrandom.Next(0, 4));
+            return command;
+        }
+
+        private char RandomPiece()
+        {
+            int index = getrandom.Next(0, 5);
+            return charList[index];
+        }
+
+        public void PressAnyKey()
+       {
+           Console.Write(1);
+       }
     }
 }

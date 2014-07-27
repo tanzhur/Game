@@ -11,7 +11,6 @@ namespace UnitTestsKingSurvival
     {
         private readonly Piece piecePawn = new PiecePawn();
         private readonly Coordinate coords = new Coordinate(4, 4);
-        private char pieceID = 'A';
 
         [TestMethod]
         [TestCategory("InitializationTests")]

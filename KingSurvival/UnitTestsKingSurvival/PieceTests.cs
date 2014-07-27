@@ -9,7 +9,6 @@
     {
         private readonly Piece piece = new PieceKing();
         private readonly Coordinate coords = new Coordinate(4, 4);
-        private readonly bool currentTestRan = true;
         private readonly GameBoard gameBoard = new GameBoard();
 
         // Methods for tests that will be equal to those for other pieces PiecePawn for example testing parent class methods
