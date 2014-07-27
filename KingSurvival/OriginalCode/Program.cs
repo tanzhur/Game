@@ -1,179 +1,123 @@
-﻿namespace KingSurvival
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
 {
-    using System;
-    using System.Linq;
-
-    // original code
-    public class KingSurvival
+    class Program
     {
-        // Фигура, пази позиция (ред, колона)
-        public struct Piece
-        {
-            private int row;
-            private int col;
-
-            public Piece(int currentRow, int currentCol)
-                : this()
-            {
-                this.Row = currentRow;
-                this.Col = currentCol;
-            }
-
-            public int Row
-            {
-                get
-                {
-                    return this.row;
-                }
-
-                set
-                {
-                    this.row = value;
-                }
-            }
-
-            public int Col
-            {
-                get
-                {
-                    return this.col;
-                }
-
-                set
-                {
-                    this.col = value;
-                }
+        struct RC {
+            public int r;
+            public int c;
+            
+            public RC(int rr, int cc) {
+                this.r = rr;
+                this.c = cc;
             }
         }
-
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            const int PawnAStartRow = 0;
-            const int PawnAStartColumn = 0;
-            const int PawnBStartRow = 0;
-            const int PawnBStartColumn = 2;
-            const int PawnCStartRow = 0;
-            const int PawnCStartColumn = 4;
-            const int PawnDStartRow = 0;
-            const int PawnDStartColumn = 6;
-            const int KingStartRow = 7;
-            const int KingStartColumn = 3;
+            RC A = new RC(0, 0);
+            RC B = new RC(0, 2);
+            RC C = new RC(0, 4);
+            RC D = new RC(0, 6);
 
-            Piece pawnA = new Piece(PawnAStartRow, PawnAStartColumn);
-            Piece pawnB = new Piece(PawnBStartRow, PawnBStartColumn);
-            Piece pawnC = new Piece(PawnCStartRow, PawnCStartColumn);
-            Piece pawnD = new Piece(PawnDStartRow, PawnDStartColumn);
 
-            Piece king = new Piece(KingStartRow, KingStartColumn);
-            bool isGameOver = false;
+            RC K = new RC(7, 3);
+            bool kraj = false;
+            int kojE_naHod = 1;
+            do {
+                bool ok; 
+                do {
+                    System.Console.Clear();
+                    PE4AT_DASKA(A, B, C, D, K);
 
-            // Пази последователноста на хода
-            // ако е четно - пешките са на ход
-            // ако е нечетно - царя е на ход
-            int turnSuccession = 1;
-            while (!isGameOver)
-            {
-                bool isValidMove;
-                do
-                {
-                    Console.Clear();
-                    PrintGameBoard(pawnA, pawnB, pawnC, pawnD, king);
 
-                    isValidMove = IsMoveDone(turnSuccession, ref pawnA, ref pawnB, ref pawnC, ref pawnD, ref king);
-                }
-                while (!isValidMove);
+                    ok = isMoveLeft(kojE_naHod, ref A, ref B, ref C, ref D, ref K);
+                } while (!ok);
 
-                isGameOver = IsThereAWinner(turnSuccession, pawnA, pawnB, pawnC, pawnD, king);
-                turnSuccession++;
-            }
+                kraj = proverka2(kojE_naHod, A, B, C, D, K);
+                kojE_naHod++;
+
+
+            } while (!kraj);
         }
 
-        // Методът се вика след всеки изигран ход
-        // Проверява дали има победител в този момент
-        private static bool IsThereAWinner(int turn, Piece pawnA, Piece pawnB, Piece pawnC, Piece pawnD, Piece king)
+        private static bool proverka2(int turn, RC A, RC B, RC C, RC D, RC K)
         {
-            const int PlayfieldSize = 7;
-
             if (turn % 2 == 1)
             {
-                // Дали Царя не е достигнал до победното поле
-                if (king.Row == 0)
+                if (K.r == 0)
                 {
-                    Console.Clear();
-                    PrintGameBoard(pawnA, pawnB, pawnC, pawnD, king);
-                    Console.WriteLine("King wins in {0} turns.", (turn / 2) + 1);
+                    System.Console.Clear();
+                    PE4AT_DASKA(A, B, C, D, K);
+                    Console.WriteLine("King wins in {0} turns.", turn / 2 + 1);
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else return false;
+                
+
             }
             else
             {
-                // Дали Царя няма къде да мърда -> загубил е
-                // Следват булеви променливи, които пазят въможните ходове на Царя
                 bool KUL = true;
-                bool KUR = true;
+                bool KUR = true; // yup, it's a boy
                 bool KDL = true;
                 bool KDR = true;
 
-                if (king.Row == 0)
+                if (K.r == 0)
                 {
+					// tuka carya e na hod
                     KUL = false;
                     KUR = false;
                 }
-                else if (king.Row == PlayfieldSize)
+                else if (K.r == 7)
                 {
                     KDL = false;
                     KDR = false;
                 }
 
-                if (king.Col == 0)
+                if (K.c == 0)
                 {
                     KUL = false;
                     KDL = false;
                 }
-                else if (king.Col == PlayfieldSize)
+                else if (K.c == 7)
                 {
-                    KUR = false;
+                    KUR = false; // kur v gyzaaaaa, oh boli!
                     KDR = false;
                 }
 
-                if (!IsPositionEmpty(king.Row - 1, king.Col - 1, pawnA, pawnB, pawnC, pawnD))
+                if (proverka(K.r - 1, K.c - 1, A, B, C, D))
                 {
                     KUL = false;
                 }
-
-                if (!IsPositionEmpty(king.Row - 1, king.Col + 1, pawnA, pawnB, pawnC, pawnD))
+                if (proverka(K.r - 1, K.c + 1, A, B, C, D))
                 {
-                    KUR = false;
+                    KUR = false; // castration... nasty
                 }
-
-                if (!IsPositionEmpty(king.Row + 1, king.Col - 1, pawnA, pawnB, pawnC, pawnD))
+                if (proverka(K.r + 1, K.c - 1, A, B, C, D))
                 {
-                    KDL = false;
-                }
-
-                if (!IsPositionEmpty(king.Row + 1, king.Col + 1, pawnA, pawnB, pawnC, pawnD))
+                   KDL = false;
+                } 
+                if (proverka(K.r + 1, K.c + 1, A, B, C, D))
                 {
                     KDR = false;
                 }
 
                 if (!KDR && !KDL && !KUL && !KUR)
                 {
-                    Console.Clear();
-                    PrintGameBoard(pawnA, pawnB, pawnC, pawnD, king);
+                    System.Console.Clear();
+                    PE4AT_DASKA(A, B, C, D, K);
                     Console.WriteLine("King loses.");
                     return true;
                 }
 
-                // Проверка дали пешките няма къде да мърдат
-                // Тогава Царят печели!
-                if (!HasPawnPosibleMoves(pawnA, pawnB, pawnC, pawnD, king) && !HasPawnPosibleMoves(pawnB, pawnA, pawnC, pawnD, king) && !HasPawnPosibleMoves(pawnC, pawnA, pawnB, pawnD, king) && !HasPawnPosibleMoves(pawnD, pawnA, pawnB, pawnC, king))
+                if (!proverka1(A, B, C, D, K) && !proverka1(B, A, C, D, K) && !proverka1(C, A, B, D, K) && !proverka1(D, A, B, C, K))
                 {
-                    Console.Clear();
-                    PrintGameBoard(pawnA, pawnB, pawnC, pawnD, king);
+                    System.Console.Clear();
+                    PE4AT_DASKA(A, B, C, D, K);
                     Console.WriteLine("King wins in {0} turns.", turn / 2);
                     return true;
                 }
@@ -182,45 +126,47 @@
             }
         }
 
-        private static bool HasPawnPosibleMoves(Piece pawn, Piece piece1, Piece piece2, Piece piece3, Piece piece4)
+        private static bool proverka1(RC pawn, RC obstacle1, RC obstacle2, RC obstacle3, RC obstacle4)
         {
-            const int PlayfieldSize = 7;
-
-            if (pawn.Row == PlayfieldSize)
+            if (pawn.r == 7)
             {
                 return false;
             }
-            else if (pawn.Col > 0 && pawn.Col < PlayfieldSize)
+            else if (pawn.c > 0 && pawn.c < 7)
             {
-                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col + 1, piece1, piece2, piece3, piece4) &&
+                if (proverka(pawn.r + 1, pawn.c + 1, obstacle1, obstacle2, obstacle3, obstacle4) &&
 
-                    !IsPositionEmpty(pawn.Row + 1, pawn.Col - 1, piece1, piece2, piece3, piece4))
-                {
-                    return false;
-                }
-            }
-            else if (pawn.Col == 0)
-            {
-                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col + 1, piece1, piece2, piece3, piece4))
-                {
-                    return false;
-                }
-            }
-            else if (pawn.Col == PlayfieldSize)
-            {
-                if (!IsPositionEmpty(pawn.Row + 1, pawn.Col - 1, piece1, piece2, piece3, piece4))
-                {
-                    return false;
-                }
-            }
+                    proverka(
+					pawn.r + 1, 
+					pawn.c - 1, 
+					obstacle1, 
+					obstacle2, 
+					obstacle3, 
+					obstacle4)) return false;
 
+
+            }
+            else if (pawn.c == 0)
+            {
+                if (proverka(pawn.r + 1, pawn.c + 1, obstacle1, obstacle2, obstacle3, obstacle4))
+                {
+                    return false;
+                }
+            }
+            else if (pawn.c == 4+3)
+            {
+                if (proverka(pawn.r + 1, pawn.c - 1, obstacle1, obstacle2, obstacle3, obstacle4))
+                {
+                    return false;
+
+
+                }
+            }
             return true;
         }
 
-        private static bool IsMoveDone(int turn, ref Piece pawnA, ref Piece pawnB, ref Piece pawnC, ref Piece pawnD, ref Piece king)
+        private static bool isMoveLeft(int turn, ref RC A, ref RC B, ref RC C, ref RC D, ref RC K)
         {
-            const int PlayfieldSize = 7;
-
             if (turn % 2 == 1)
             {
                 Console.Write("King’s turn: ");
@@ -228,10 +174,10 @@
                 switch (move)
                 {
                     case "KUL":
-                        if (king.Col > 0 && king.Row > 0 && IsPositionEmpty(king.Row - 1, king.Col - 1, pawnA, pawnB, pawnC, pawnD))
+                        if (K.c > 0 && K.r > 0 && !proverka(K.r - 1, K.c - 1, A, B, C, D))
                         {
-                            king.Col--;
-                            king.Row--;
+                            K.c--;
+                            K.r--;
                         }
                         else
                         {
@@ -239,13 +185,12 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
-                    case "KUR":
-                        if (king.Col < PlayfieldSize && king.Row > 0 && IsPositionEmpty(king.Row - 1, king.Col + 1, pawnA, pawnB, pawnC, pawnD))
+                    case "KUR": // if KUR... gotta love these moments
+                        if (K.c < 7 && K.r > 0 && !proverka(K.r - 1, K.c + 1, A, B, C, D))
                         {
-                            king.Col++;
-                            king.Row--;
+                            K.c++;
+                            K.r--;
                         }
                         else
                         {
@@ -253,36 +198,38 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "KDL":
-                        if (king.Col > 0 && king.Row < PlayfieldSize && IsPositionEmpty(king.Row + 1, king.Col - 1, pawnA, pawnB, pawnC, pawnD))
+                        if (K.c > 0 && K.r < 7 && !proverka(K.r + 1, K.c - 1, A, B, C, D))
                         {
-                            king.Col--;
-                            king.Row++;
+                            K.c--;
+                            K.r++;
                         }
                         else
                         {
+
+
                             Console.Write("Illegal move!");
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "KDR":
-                        if (king.Col < PlayfieldSize && king.Row < PlayfieldSize && IsPositionEmpty(king.Row + 1, king.Col + 1, pawnA, pawnB, pawnC, pawnD))
+
+
+                        if (K.c < 7 && K.r < 7 && !proverka(K.r + 1, K.c + 1, A, B, C, D))
                         {
-                            king.Col++;
-                            king.Row++;
+                            K.c++;
+                            K.r++;
                         }
                         else
                         {
                             Console.Write("Illegal move!");
 
+
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     default:
                         Console.Write("Illegal move!");
@@ -292,16 +239,17 @@
             }
             else
             {
-                Console.Write("Pawn's turn: ");
+                Console.Write("Pawns’ turn: ");
+
 
                 string move = Console.ReadLine();
                 switch (move)
                 {
                     case "ADL":
-                        if (pawnA.Col > 0 && pawnA.Row < PlayfieldSize && IsPositionEmpty(pawnA.Row + 1, pawnA.Col - 1, king, pawnB, pawnC, pawnD))
+                        if (A.c > 0 && A.r < 7 && !proverka(A.r + 1, A.c - 1, K, B, C, D))
                         {
-                            pawnA.Col--;
-                            pawnA.Row++;
+                            A.c--;
+                            A.r++;
                         }
                         else
                         {
@@ -309,13 +257,12 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "ADR":
-                        if (pawnA.Col < PlayfieldSize && pawnA.Row < PlayfieldSize && IsPositionEmpty(pawnA.Row + 1, pawnA.Col + 1, king, pawnB, pawnC, pawnD))
+                        if (A.c < 7 && A.r < 7 && !proverka(A.r + 1, A.c + 1, K, B, C, D))
                         {
-                            pawnA.Col++;
-                            pawnA.Row++;
+                            A.c++;
+                            A.r++;
                         }
                         else
                         {
@@ -323,14 +270,15 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "BDL":
-                        if (pawnB.Col > 0 && pawnB.Row < PlayfieldSize && IsPositionEmpty(pawnB.Row + 1, pawnB.Col - 1, pawnA, king, pawnC, pawnD))
+                        if (B.c > 0 && B.r < 7 && 
+							
+							!proverka(B.r + 1, B.c - 1, A, K, C, D))
                         {
-                            pawnB.Col--;
+                            B.c--;
 
-                            pawnB.Row++;
+                            B.r++;
                         }
                         else
                         {
@@ -338,13 +286,12 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "BDR":
-                        if (pawnB.Col < PlayfieldSize && pawnB.Row < PlayfieldSize && IsPositionEmpty(pawnB.Row + 1, pawnB.Col + 1, pawnA, king, pawnC, pawnD))
+                        if (B.c < 7 && B.r < 7 && !proverka(B.r + 1, B.c + 1, A, K, C, D))
                         {
-                            pawnB.Col++;
-                            pawnB.Row++;
+                            B.c++;
+                            B.r++;
                         }
                         else
                         {
@@ -352,13 +299,12 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "CDL":
-                        if (pawnC.Col > 0 && pawnC.Row < PlayfieldSize && IsPositionEmpty(pawnC.Row + 1, pawnC.Col + 1, pawnA, pawnB, king, pawnD))
+                        if (C.c > 0 && C.r < 7 && !proverka(C.r + 1, C.c + 1, A, B, K, D))
                         {
-                            pawnC.Col--;
-                            pawnC.Row++;
+                            C.c--;
+                            C.r++;
                         }
                         else
                         {
@@ -366,13 +312,12 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "CDR":
-                        if (pawnC.Col < PlayfieldSize && pawnC.Row < PlayfieldSize && IsPositionEmpty(pawnC.Row + 1, pawnC.Col + 1, pawnA, pawnB, king, pawnD))
+                        if (C.c < 7 && C.r < 7 && !proverka(C.r + 1, C.c + 1, A, B, K, D))
                         {
-                            pawnC.Col++;
-                            pawnC.Row++;
+                            C.c++;
+                            C.r++;
                         }
                         else
                         {
@@ -380,13 +325,12 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "DDL":
-                        if (pawnD.Col > 0 && pawnD.Row < PlayfieldSize && IsPositionEmpty(pawnD.Row + 1, pawnD.Col - 1, pawnA, pawnB, pawnC, king))
+                        if (D.c > 0 && D.r < 7 && !proverka(D.r + 1, D.c - 1, A, B, C, K))
                         {
-                            pawnD.Col--;
-                            pawnD.Row++;
+                            D.c--;
+                            D.r++;
                         }
                         else
                         {
@@ -394,13 +338,14 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     case "DDR":
-                        if (pawnD.Col < PlayfieldSize && pawnD.Row < PlayfieldSize && IsPositionEmpty(pawnD.Row + 1, pawnD.Col + 1, pawnA, pawnB, pawnC, king))
-                        {
-                            pawnD.Col++;
-                            pawnD.Row++;
+                        if (D.c < 7 && D.r < 7 && !proverka(D.r + 1, D.c + 1, A, B, C, K))
+                        { 
+
+
+                            D.c++;
+                            D.r++;
                         }
                         else
                         {
@@ -408,155 +353,112 @@
                             Console.ReadKey();
                             return false;
                         }
-
                         break;
                     default:
                         Console.Write("Illegal move!");
                         Console.ReadKey();
 
+
                         return false;
                 }
-            }
+            }          
 
             return true;
         }
 
-        // Проверява дали позицията на която искаме да се придвижи дадена фигура е свободна! 
-        // Ако там вече има фигура - не можеш да се придвижиш върху нея!
-        private static bool IsPositionEmpty(int checkedRow, int checkedColumn, Piece piece1, Piece piece2, Piece piece3, Piece piece4)
+        private static bool proverka(int notOverlapedRow, int notOverlapedColumn, RC overlap1, RC overlap2, RC overlap3, RC overlap4)
         {
-            if (checkedRow == piece1.Row && checkedColumn == piece1.Col)
-            {
+            if (notOverlapedRow == overlap1.r && notOverlapedColumn == overlap1.c) return true;
+				else if (notOverlapedRow == overlap2.r && notOverlapedColumn == overlap2.c) return true;
+				     else if (notOverlapedRow == overlap3.r && notOverlapedColumn == overlap3.c) return true;
+				          else if (notOverlapedRow == overlap4.r && notOverlapedColumn == overlap4.c) return true;
+							   else       
                 return false;
-            }
-            else if (checkedRow == piece2.Row && checkedColumn == piece2.Col)
-            {
-                return false;
-            }
-            else if (checkedRow == piece3.Row && checkedColumn == piece3.Col)
-            {
-                return false;
-            }
-            else if (checkedRow == piece4.Row && checkedColumn == piece4.Col)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+
+      
         }
 
-        // Принтира дъската за игра. Взима фигурите като параметри
-        private static void PrintGameBoard(Piece pawnA, Piece pawnB, Piece pawnC, Piece pawnD, Piece king)
+        private static void PE4AT_DASKA(RC A, RC B, RC C, RC D, RC K)
         {
-            const int BoardWidth = 19;
-            const int LeftDistanceToUpDownBorder = 3;
-            const int PlayfieldSize = 7;
-
-            int columnNumeration = 0;
-            for (int i = 0; i < BoardWidth; i++)
+            int row = 0;
+            for (int i = 0; i < 19; i++)
             {
-                if (i > LeftDistanceToUpDownBorder)
+                if (i > 3)
                 {
                     if (i % 2 == 0)
                     {
-                        // Рисува  горните числа на дъската
-                        Console.Write("{0} ", columnNumeration++);
+                        
+
+						// ostaviame interval sled chisloto
+						Console.Write("{0} ", row++);
                     }
                 }
                 else
-                {   // ...слага спейс с цел напасване на номерирането на дъската
-                    // спрямо съответните полета за игра
-                    Console.Write(" ");
-                }
-            }
-
-            Console.WriteLine();
-
-            // печата горната рамка на полето
-            for (int i = 0; i <= BoardWidth; i++)
-            {
-                if (i < LeftDistanceToUpDownBorder)
                 {
                     Console.Write(" ");
                 }
-                else
-                {
-                    Console.Write('-');
-                }
             }
-
             Console.WriteLine();
-
-            // печата игралното поле по редове и колони
-            for (int row = 0; row <= PlayfieldSize; row++)
+            Console.Write("   ");
+            for (int i = 0; i < 17; i++)
             {
-                int rowNumeration = row;
+                Console.Write('-');
+            }
+            Console.WriteLine();
+            for (int i = 0; i < 8; i++)
+            {
+                Console.Write("{0} | ", i);
 
-                // страничната номерация + лява рамка
-                Console.Write("{0} | ", rowNumeration);
-
-                // Тук се печата самото игрално ПОЛЕ!!! С Цар, Пешки и полета "+" или "-"
-                for (int col = 0; col <= PlayfieldSize; col++)
+                for (int j = 0; j < 8; j++)
                 {
-                    char symbol = CheckSymbolAtGivenPosition(pawnA, pawnB, pawnC, pawnD, king, row, col);
+                    char symbol;
+
+
+                    find(A, B, C, D, K, i, j, out symbol);
 
                     Console.Write(symbol + " ");
                 }
-
-                // дясната странична рамка
                 Console.WriteLine('|');
             }
 
-            // долната рамка
-            for (int i = 0; i <= BoardWidth; i++)
+            Console.Write("   ");
+            for (int i = 0; i < 17; i++)
             {
-                if (i < LeftDistanceToUpDownBorder)
-                {
-                    Console.Write(" ");
-                }
-                else
-                {
-                    Console.Write('-');
-                }
+                Console.Write('-');
             }
-
             Console.WriteLine();
         }
 
-        // Проверява на съответната позиция в полето каква фигура да нарисува (или да остави празно поле "+" и "-")
-        private static char CheckSymbolAtGivenPosition(Piece pawnA, Piece pawnB, Piece pawnC, Piece pawnD, Piece king, int fieldRow, int fieldCol)
+        private static void find(RC A, RC B, RC C, RC D, RC K, int i, int j, out char symbol)
         {
-            if (pawnA.Row == fieldRow && pawnA.Col == fieldCol)
+            if (A.r == i && A.c == j)
             {
-                return 'A';
+                symbol = 'A';
             }
-            else if (pawnB.Row == fieldRow && pawnB.Col == fieldCol)
+            else if (B.r == i && B.c == j)
             {
-                return 'B';
+                symbol = 'B';
             }
-            else if (pawnC.Row == fieldRow && pawnC.Col == fieldCol)
+            else if (C.r == i && C.c == j)
             {
-                return 'C';
+                symbol = 'C';
             }
-            else if (pawnD.Row == fieldRow && pawnD.Col == fieldCol)
+            else if (D.r == i && D.c == j)
             {
-                return 'D';
+                symbol = 'D';
             }
-            else if (king.Row == fieldRow && king.Col == fieldCol)
+            else if (K.r == i && K.c == j)
             {
-                return 'K';
+                symbol = 'K';
             }
-            else if ((fieldRow + fieldCol) % 2 == 0)
+            else if ((i + j) % 2 == 0)
             {
-                return '+';
+                symbol = '+';
             }
             else
             {
-                return '-';
+                symbol = '-';
             }
         }
-
     }
 }
