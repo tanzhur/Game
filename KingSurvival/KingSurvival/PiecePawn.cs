@@ -42,11 +42,11 @@
         {
             if (move == Moves.DownLeft)
             {
-                return new Coordinates(this.Coordinates.X - 1, this.Coordinates.Y + 1);
+                return new Coordinate(this.Coordinates.X - 1, this.Coordinates.Y + 1);
             }
             else if (move == Moves.DownRight)
             {
-                return new Coordinates(this.Coordinates.X + 1, this.Coordinates.Y + 1);
+                return new Coordinate(this.Coordinates.X + 1, this.Coordinates.Y + 1);
             }
 
             return null;

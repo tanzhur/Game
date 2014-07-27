@@ -59,7 +59,7 @@
         /// </summary>
         public override void SetPieceCoordinates()
         {
-            this.Piece.Coordinates = new Coordinates(
+            this.Piece.Coordinates = new Coordinate(
                                          this.startPositionsX[this.pieceIndex],
                                          this.startPositionsY[this.pieceIndex]);
         }

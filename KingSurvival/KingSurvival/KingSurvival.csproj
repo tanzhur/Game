@@ -88,7 +88,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RendererConsole.cs" />
-    <Compile Include="Coordinates.cs" />
+    <Compile Include="Coordinate.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="GameRendererAdaptor.cs" />
     <Compile Include="Interfaces\ICoordinates.cs" />

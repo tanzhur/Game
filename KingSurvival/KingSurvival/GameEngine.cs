@@ -89,8 +89,8 @@
             this.playerOneMoveLogic = new LogicPlayer1PieceMover();
             this.playerTwoMoveLogic = new LogicPlayer2PieceMover();
 
-            this.initialGameBoardCoordinates = new Coordinates(0, 0);
-            this.initialMessagesCoordinates = new Coordinates(
+            this.initialGameBoardCoordinates = new Coordinate(0, 0);
+            this.initialMessagesCoordinates = new Coordinate(
                                               this.initialGameBoardCoordinates.X,
                                               this.initialGameBoardCoordinates.Y + this.gameBoard.Height + GameConstants.MessageToPlayerOffset);
 

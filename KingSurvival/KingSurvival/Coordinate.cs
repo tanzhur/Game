@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents a X-Y pair of a 2D point in space
     /// </summary>
-    public struct Coordinates : ICoordinates, IEquatable<ICoordinates>
+    public struct Coordinate : ICoordinates, IEquatable<ICoordinates>
     {
         /// <summary>
         /// Holds the x coordinate
@@ -20,11 +20,11 @@
         private int y;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Coordinates"/> struct
+        /// Initializes a new instance of the <see cref="Coordinate"/> struct
         /// </summary>
         /// <param name="x">The X coordinate</param>
         /// <param name="y">The Y coordinate</param>
-        public Coordinates(int x = 0, int y = 0)
+        public Coordinate(int x = 0, int y = 0)
             : this()
         {
             this.X = x;
