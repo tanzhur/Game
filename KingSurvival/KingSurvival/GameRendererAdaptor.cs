@@ -44,7 +44,7 @@
         }
 
         /// <summary>
-        /// Cleares the screen.
+        /// Clears the screen.
         /// </summary>
         public void ClearScreen()
         {

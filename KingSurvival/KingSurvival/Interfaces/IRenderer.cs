@@ -20,7 +20,7 @@
         void RenderText(string text, ICoordinates leftTop);
 
         /// <summary>
-        /// Cleares all processed objects and text leaving a blank screen.
+        /// Clear all processed objects and text leaving a blank screen.
         /// </summary>
         void ClearScreen();
     }
