@@ -1,7 +1,6 @@
 ﻿namespace KingSurvival
 {
     using System.Collections.Generic;
-
     using Interfaces;
 
     /// <summary>

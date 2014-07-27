@@ -1,6 +1,5 @@
 ﻿namespace KingSurvival
 {
-    using System;
     using Interfaces;
 
     /// <summary>

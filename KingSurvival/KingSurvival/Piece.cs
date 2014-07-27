@@ -1,8 +1,5 @@
 ﻿namespace KingSurvival
 {
-    using System;
-    using System.Collections.Generic;
-
     using Enums;
     using Interfaces;
 

@@ -1,7 +1,6 @@
 ﻿namespace KingSurvival
 {
     using System.Linq;
-
     using Enums;
     using Interfaces;
 
