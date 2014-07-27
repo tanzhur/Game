@@ -10,7 +10,7 @@ namespace UnitTestsKingSurvival
     public class PiecePawnTests
     {
         private readonly Piece piecePawn = new PiecePawn();
-        private readonly Coordinates coords = new Coordinates(4, 4);
+        private readonly Coordinate coords = new Coordinate(4, 4);
         private char pieceID = 'A';
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace UnitTestsKingSurvival
         [TestCategory("FunctionalityTests")]
         public void TestPiecePawnMoveWithValidNewCoordinates()
         {
-            Coordinates newCoords = new Coordinates(3, 3);
+            Coordinate newCoords = new Coordinate(3, 3);
             piecePawn.Coordinates = coords;
             piecePawn.Move(newCoords);
 

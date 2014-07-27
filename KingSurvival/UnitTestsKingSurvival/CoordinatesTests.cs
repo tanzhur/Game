@@ -7,13 +7,13 @@ namespace UnitTestsKingSurvival
     [TestClass]
     public class CoordinatesTests
     {
-        Coordinates testCoordinate;
+        Coordinate testCoordinate;
 
         [TestMethod]
         [TestCategory("InitializationTests")]
         public void CoordinatesInitializeTest()
         {
-            testCoordinate = new Coordinates(1, 7); // Test edge cases.
+            testCoordinate = new Coordinate(1, 7); // Test edge cases.
             Assert.AreEqual(1, testCoordinate.X);
             Assert.AreEqual(7, testCoordinate.Y);
         }
@@ -22,8 +22,8 @@ namespace UnitTestsKingSurvival
         [TestCategory("FunctionalityTests")]
         public void CoordinatesEqualsTestWhenTrue()
         {
-            testCoordinate = new Coordinates(); // Testing the (0, 0) case.
-            bool answer = testCoordinate.Equals(new Coordinates());
+            testCoordinate = new Coordinate(); // Testing the (0, 0) case.
+            bool answer = testCoordinate.Equals(new Coordinate());
             Assert.AreEqual(true, answer);
         }
 
@@ -31,8 +31,8 @@ namespace UnitTestsKingSurvival
         [TestCategory("FunctionalityTests")]
         public void CoordinatesEqualsTestWhenFalse()
         {
-            testCoordinate = new Coordinates(2, 3);
-            bool answer = testCoordinate.Equals(new Coordinates(5, 5));
+            testCoordinate = new Coordinate(2, 3);
+            bool answer = testCoordinate.Equals(new Coordinate(5, 5));
             Assert.AreEqual(false, answer);
         }
     }

@@ -9,7 +9,7 @@
     public class PieceKingTests
     {
         private readonly Piece pieceKing = new PieceKing();
-        private readonly Coordinates coords = new Coordinates(4, 4);
+        private readonly Coordinate coords = new Coordinate(4, 4);
 
         [TestMethod]
         [TestCategory("InitializationTests")]
@@ -114,7 +114,7 @@
         [TestCategory("FunctionalityTests")]
         public void TestPieceKingMoveWithValidNewCoordinates()
         {
-            Coordinates newCoords = new Coordinates(3, 3);
+            Coordinate newCoords = new Coordinate(3, 3);
             pieceKing.Coordinates = coords;
             pieceKing.Move(newCoords);
 

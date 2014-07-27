@@ -8,7 +8,7 @@
     public class GameBoardTests
     {
         private readonly Piece pieceKing = new PieceKing();
-        private readonly Coordinates coords = new Coordinates(4, 4);
+        private readonly Coordinate coords = new Coordinate(4, 4);
         private readonly GameBoard board = new GameBoard();
         private const bool TestRanThrough = true;
         private const int DefaultWidth = 21;
@@ -94,7 +94,7 @@
         public void AssertNoExceptionIsThrownInNotifyMethod()
         {
             pieceKing.Coordinates = coords;
-            board.Notify(pieceKing, new Coordinates(5, 5));
+            board.Notify(pieceKing, new Coordinate(5, 5));
         }
     }
 }

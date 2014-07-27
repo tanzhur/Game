@@ -8,7 +8,7 @@
     public class PieceTests
     {
         private readonly Piece piece = new PieceKing();
-        private readonly Coordinates coords = new Coordinates(4, 4);
+        private readonly Coordinate coords = new Coordinate(4, 4);
         private readonly bool currentTestRan = true;
         private readonly GameBoard gameBoard = new GameBoard();
 
@@ -56,7 +56,7 @@
         [TestMethod]
         [TestCategory("FunctionalityTests")]
         public void TestPieceMoveToACorrectValue(){
-            Coordinates newCoords = new Coordinates(5, 5);
+            Coordinate newCoords = new Coordinate(5, 5);
             piece.Move(newCoords);
             Assert.AreEqual(newCoords, piece.Coordinates);
         }
@@ -66,7 +66,7 @@
         [ExpectedException(typeof(NullReferenceException))]
         public void TestPieceMoveToACorrectValueWithDelegateSet()
         {   
-            Coordinates newCoords = new Coordinates(5, 5);
+            Coordinate newCoords = new Coordinate(5, 5);
             piece.Moved += gameBoard.Notify;
             piece.Move(newCoords);
             Assert.AreEqual(newCoords, piece.Coordinates);
