@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33BB996B-1141-4734-8425-879B21CC0258}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KingSurvival.Game</RootNamespace>
+    <AssemblyName>KingSurvival.Game</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Coordinate.cs" />
+    <Compile Include="Common\GameConstants.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="Interfaces\ICoordinates.cs" />
+    <Compile Include="Enums\Moves.cs" />
+    <Compile Include="Common\GameValidator.cs" />
+    <Compile Include="GameEngine.cs" />
+    <Compile Include="Interfaces\IGamePieceFactory.cs" />
+    <Compile Include="GameInitializer\PawnsAndKingsFactory.cs" />
+    <Compile Include="GameInitializer\Player1GamePieceBuilder.cs" />
+    <Compile Include="GameInitializer\Player2GamePieceBuilder.cs" />
+    <Compile Include="GameInitializer\PlayerGamePieceDirector.cs" />
+    <Compile Include="GameInitializer\PlayersAllGamePiecesCreator.cs" />
+    <Compile Include="GameInitializer\PlayersGamePieceBuilder.cs" />
+    <Compile Include="GameObjects\Board\GameBoard.cs" />
+    <Compile Include="Interfaces\IGameBoard.cs" />
+    <Compile Include="Interfaces\IGamePieceObserver.cs" />
+    <Compile Include="Interfaces\IMovableGamePiece.cs" />
+    <Compile Include="Interfaces\IObservableGamePiece.cs" />
+    <Compile Include="Interfaces\IRenderable.cs" />
+    <Compile Include="Interfaces\IPiece.cs" />
+    <Compile Include="GameObjects\Pieces\Piece.cs" />
+    <Compile Include="GameObjects\Pieces\PieceKing.cs" />
+    <Compile Include="GameObjects\Pieces\PiecePawn.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IRenderer.cs" />
+    <Compile Include="Logic\LogicPieceMover.cs" />
+    <Compile Include="Logic\LogicPlayer1PieceMover.cs" />
+    <Compile Include="Logic\LogicPlayer2PieceMover.cs" />
+    <Compile Include="Logic\LogicPlayerPieceMoveBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
