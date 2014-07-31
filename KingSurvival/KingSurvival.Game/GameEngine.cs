@@ -91,6 +91,7 @@
         /// </summary>
         public void StartGame()
         {
+            // gets all the game objects needed for the engine to operate
             this.InitializeGameEngineObjects();
 
             // the game board should know if a piece moves.
