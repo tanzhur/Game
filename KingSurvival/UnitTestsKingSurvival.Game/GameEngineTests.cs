@@ -742,6 +742,7 @@
             var engine = new GameEngine(renderer, controller);
 
             engine.StartGame();
+
             Assert.IsTrue(true);
         }
 
